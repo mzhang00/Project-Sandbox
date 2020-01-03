@@ -51,33 +51,24 @@ Algorithms:
 </ul>
 
 ## Timeline
-M == Michael, R == Raymond, Ch == Chris, Ca == Caleb /n
-1/3/20:: Initialize the terminal with a custom size.- Ca /n
-1/6/20: Draw the stickmen and allow for their movement on the terminal- Ch /n
-1/6/20: Setup a rudimentary turn-by-turn system- M /n
-1/6/20: 
-1/6/20: 
-1/9/20:
-1/9/20:
-1/9/20:
-1/9/20:
-1/13/20:
-1/13/20:
-1/13/20:
-1/13/20:
-1/14/20-1/16/20- Extra credit or debugging- Everyone
-1/17/20: Final Working Product: Everyone
-1/7/20: Start designing the static environment elements of the map- R
-1/8/20: Design the weapons and allow the player use a weapon - Ca
-1/9/20: Implement the selection of multiple characters - M
-1/13/20: Refine the behaviours of the moveable characters to allow them to navigate the map - Ch
-1/13/20: Allow the weapons to interact with and affect the health of the characters - R
-1/13/20: Design an interface that zooms in on a portion of the map depending on which character is selected - M
-1/14/20: Design a main level screen to allow user to select different maps or or adjust the amount of characters each player starts with - Ch
-1/15/20: Implement different settings and modes, like easy/medium/hard. Ca 
-1/16/20: Time to debug - Everyone
-1/17/20: Final Working product - Also everyone
-If Extra Time: 
-Allow for multiple computers to play the game
-Have a multiplayer mode with more than just 2 players
-Animate fancy graphics, or at least sprites, of the projectiles and the characters
+Key: M == Michael, R == Raymond, Ch == Chris, Ca == Caleb <br>
+1/3/20:: Initialize the terminal with a custom size.- Ca<br>
+1/6/20: Draw the stickmen and allow for their movement on the terminal- Ch<br>
+1/6/20: Setup a rudimentary turn-by-turn system- M<br>
+1/6/20: Start designing blocks and the static environment elements of the map- R<br>
+1/8/20: Design the weapons and allow the player use a weapon - Ca<br>
+1/9/20: Iterate between multiple characters - M<br>
+1/13/20: Refine the behaviours of the moveable characters to allow them to navigate the map - Ch<br>
+1/13/20: Allow the weapons to interact with and affect the health of the characters - R<br>
+1/13/20: Design an interface that zooms in on a portion of the map depending on which character is selected - M<br>
+1/14/20: Design a main level screen to allow user to select different maps or or adjust the amount of characters each player starts with - Ch<br>
+1/15/20: Implement different settings and modes, like easy/medium/hard. Ca <br>
+1/16/20: Time to debug - Everyone<br>
+1/17/20: Final Working product - Also everyone<br>
+If Extra Time: <br>
+Allow for multiple computers to play the game<br>
+Have a multiplayer mode with more than just 2 players<br>
+Animate fancy graphics, or at least sprites, of the projectiles and the characters<br>
+
+
+
