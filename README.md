@@ -4,10 +4,10 @@ Chris Choi (Period 4), Caleb Kahan (Period 5), Ray Lee (Period 5), Michael Zhang
 ## Description
 For our project, we are planning to create a 2-dimensional turn-based multi-unit shooter game, based on games like Territory War, Worms, and Wild Ones. Players will play on the same machine and take turns controlling their units and attacking the other player’s units until one team reigns supreme. They will be able to use weapons to aim at the other units as well as move around their own units around the map. When all units belonging to a player have been vanquished, the other player will be considered the winner. 
 
-##User Interface
+## User Interface
 The players will be able to use the arrow keys to manipulate their units' movements. When they have travelled the maximum distance allotted per turn, they will be able to use the arrow keys to control the aim of their weapon, as well as using number keys to control the power of the projectile that is fired from their weapon. Once they have chosen a setting that satisfies them, they hit enter and end their turn. Then, the next player will have access to the controls and will begin their turn. 
 
-##Technical Design
+## Technical Design
 Topics Used: Allocating Memory:
 <ul>
   <li>Memory for stickmen
@@ -50,14 +50,23 @@ Algorithms:
   <li>Game Process will continue switching turns until the game is over. 
 </ul>
 
-##Timeline
-M == Michael, R == Raymond, Ch == Chris, Ca == Caleb
-1/3/20:: Initialize the terminal with a custom size.- Ca
-1/3/20:: Figure how to draw specific blocks of any shape or size using N-curses- M
-1/3/20
-1/6/20: Draw the stickmen and allow for their movement on the terminal- Ch
-1/6/20: Setup a rudimentary turn-by-turn system- M
-1/6/20e
+## Timeline
+M == Michael, R == Raymond, Ch == Chris, Ca == Caleb /n
+1/3/20:: Initialize the terminal with a custom size.- Ca /n
+1/6/20: Draw the stickmen and allow for their movement on the terminal- Ch /n
+1/6/20: Setup a rudimentary turn-by-turn system- M /n
+1/6/20: 
+1/6/20: 
+1/9/20:
+1/9/20:
+1/9/20:
+1/9/20:
+1/13/20:
+1/13/20:
+1/13/20:
+1/13/20:
+1/14/20-1/16/20- Extra credit or debugging- Everyone
+1/17/20: Final Working Product: Everyone
 1/7/20: Start designing the static environment elements of the map- R
 1/8/20: Design the weapons and allow the player use a weapon - Ca
 1/9/20: Implement the selection of multiple characters - M
