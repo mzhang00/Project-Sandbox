@@ -20,12 +20,14 @@ Working with files:
   <li>We will create the file/map by hand and then retrieve it towards shared memory during the game.
 </ul>
 Processes:
-Three Processes:
 <ul>
-  <li>Player 1 Process
-  <li>Player 2 Process
+  <li>Three Processes:
+  <ul>
+    <li>Player 1 Process- sends information to game process to affect game
+    <li>Player 2 Process- sends information to game process to affect game
+    <li>Game Process- controls map, and affects map from decisions made by players
+  </ul>
 </ul>
-Game Process
 Signals: 
 <ul>
   <li>Killing off players or games
