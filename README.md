@@ -56,11 +56,13 @@ Key: M == Michael, R == Raymond, Ch == Chris, Ca == Caleb <br>
 1/6/20: Draw the stickmen and allow for their movement on the terminal- Ch<br>
 1/6/20: Setup a rudimentary turn-by-turn system- M<br>
 1/6/20: Start designing blocks and the static environment elements of the map- R<br>
+1/7/20: Design a gun and allow the player to use a gun- Ca<br>
 1/8/20: Design the weapons and allow the player use a weapon - Ca<br>
 1/9/20: Iterate between multiple characters - M<br>
-1/13/20: Refine the behaviours of the moveable characters to allow them to navigate the map - Ch<br>
+1/13/20: Refine the behaviours of the moveable characters to allow them to navigate the map - also limit distance - Ch<br>
 1/13/20: Allow the weapons to interact with and affect the health of the characters - R<br>
 1/13/20: Design an interface that zooms in on a portion of the map depending on which character is selected - M<br>
+1/13/20 Add different weapons such as grenade or boot: Ca<br>
 1/14/20: Design a main level screen to allow user to select different maps or or adjust the amount of characters each player starts with - Ch<br>
 1/15/20: Implement different settings and modes, like easy/medium/hard. Ca <br>
 1/16/20: Time to debug - Everyone<br>
