@@ -8,6 +8,10 @@ SDL_Surface* gScreenSurface = NULL;
 //The image we will load and show on the screen
 SDL_Surface* gHelloWorld = NULL;
 
+SDL_Surface* gXOut = NULL;
+
+
+
 int init()
 {
     //Initialization flag
@@ -41,8 +45,8 @@ int init()
 int loadMedia(){
     //Loading success flag
     int success = 1;
-    char * cwd = NULL;
-    getcwd(cwd, sizeof(cwd));
+    char cwd[100];
+    getcwd(cwd, 100);
     strcat(cwd, "/map.bmp");
     //Load splash image
     gHelloWorld = SDL_LoadBMP(cwd );
@@ -50,7 +54,6 @@ int loadMedia(){
         printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
         success = 0;
     }
-
     return success;
 }
 

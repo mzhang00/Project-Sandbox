@@ -3,23 +3,33 @@
 
 int main( int argc, char* args[] ){
   //Start up SDL and create window
-   if( !init() ){
-     printf( "Failed to initialize!\n" );
-   }
-   else{ //Load media
-     if( !loadMedia() ){
-       printf( "Failed to load media!\n" );
-     }
-     else{
-       //Apply the image
-       SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+  if( !init() ){
+		printf( "Failed to initialize!\n" );
+	}
+	else{
+    if( !loadMedia() )
+		{
+			printf( "Failed to load media!\n" );
+		}
+		else {
+      int quit = 0;
+      SDL_Event e;
+      while (!quit) {
+        while( SDL_PollEvent( &e ) != 0 ) {
+           //User requests quit
+           if( e.type == SDL_QUIT )
+           {
+             quit = 1;
+           }
+           //Apply the image
+          SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
 
-       SDL_UpdateWindowSurface( gWindow );
-
-       SDL_Delay( 2000 );
-     }
-   }
-   close1();
-
+          //Update the surface
+          SDL_UpdateWindowSurface( gWindow );
+       }
+      }
+    }
+  }
+  close1();
   return 0;
 }

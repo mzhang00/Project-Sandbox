@@ -27,6 +27,7 @@ extern SDL_Surface* gScreenSurface; //= NULL;
 //The image we will load and show on the screen
 extern SDL_Surface* gHelloWorld; //= NULL;
 
+extern SDL_Surface* gXOut;
 int init();
 
 //Loads media
