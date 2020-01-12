@@ -49,13 +49,28 @@ int main(){
 
         // speed of box
         int speed = 300;
-
+        int LastTick = 0;
+        int FPSRate = 30;
+        int FPSCounter = 0;
+        int movement = 0;
+        float deltaTime = 0;
         // annimation loop
         while (!close) {
             SDL_Event event;
 
             // Events mangement
             while (SDL_PollEvent(&event)) {
+                if (SDL_GetTicks()>LastTick+1000){
+                     FPSRate=FPSCounter;
+                     FPSCounter=0;
+                     if(FPSRate == 0)
+                       deltaTime = 0;
+                     else
+                      deltaTime = 1.0/FPSRate;
+                     LastTick = SDL_GetTicks();
+
+                }
+                FPSCounter++;
                 switch (event.type) {
 
                 case SDL_QUIT:
@@ -65,22 +80,25 @@ int main(){
 
                 case SDL_KEYDOWN:
                     // keyboard API for key pressed
+                    movement=(deltaTime*50);
+                    printf("%f\n",deltaTime);
                     switch (event.key.keysym.scancode) {
                     case SDL_SCANCODE_W:
                     case SDL_SCANCODE_UP:
-                        rect.y -= speed / 30;
+                        //rect.y -= movement;
+                        rect.y -= 5;
                         break;
                     case SDL_SCANCODE_A:
                     case SDL_SCANCODE_LEFT:
-                        rect.x -= speed / 30;
+                        rect.x -= (int)movement;
                         break;
                     case SDL_SCANCODE_S:
                     case SDL_SCANCODE_DOWN:
-                        rect.y += speed / 30;
+                        rect.y += (int)movement;
                         break;
                     case SDL_SCANCODE_D:
                     case SDL_SCANCODE_RIGHT:
-                        rect.x += speed / 30;
+                        rect.x += (int)movement;
                         break;
                     }
                 }
