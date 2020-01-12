@@ -31,3 +31,4 @@ int loadMedia();
 
 //Frees media and shuts down SDL
 void close1();
+>>>>>>> b52fa09f719ae15655294b26cc084e9a6fff264a
