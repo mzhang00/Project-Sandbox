@@ -16,18 +16,17 @@ int main( int argc, char* args[] ){
       SDL_Event e;
       while (!quit) {
         while( SDL_PollEvent( &e ) != 0 ) {
-           //User requests quit
            if( e.type == SDL_QUIT )
            {
              quit = 1;
              printf("Closing the window ...\n");
            }
+         }
            //Apply the image
-          SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+        SDL_BlitSurface( gXOut, NULL, gScreenSurface, NULL );
 
-          //Update the surface
-          SDL_UpdateWindowSurface( gXOut );
-       }
+        //Update the surface
+        SDL_UpdateWindowSurface( gWindow);
       }
     }
   }
