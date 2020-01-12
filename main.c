@@ -4,131 +4,109 @@
 
 int main( int argc, char* args[] ){
   // retutns zero on success else non-zero
-      if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-          printf("error initializing SDL: %s\n", SDL_GetError());
+      if (!init()) {
+        printf("Failed to initialize\n");
       }
-      SDL_Window* win = SDL_CreateWindow("GAME", // creates a window
-                                         SDL_WINDOWPOS_CENTERED,
-                                         SDL_WINDOWPOS_CENTERED,
-                                         1000, 1000, 0);
+      else {
+        SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+        if( win == NULL ){
+            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
+        }
+        // creates a renderer to render our images
+        SDL_Renderer* rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
-      // triggers the program that controls
-      // your graphics hardware and sets flags
-      Uint32 render_flags = SDL_RENDERER_ACCELERATED;
+        SDL_Surface* surface;
+        char cwd[100];
+        getcwd(cwd, 100);
+        strcat(cwd, "/map.bmp");
+        //Load splash image
+        surface = SDL_LoadBMP(cwd );
 
-      // creates a renderer to render our images
-      SDL_Renderer* rend = SDL_CreateRenderer(win, -1, render_flags);
+        // loads image to our graphics hardware memory.
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
+        // clears main-memory
+        SDL_FreeSurface(surface);
 
-      // creates a surface to load an image into the main memory
-      SDL_Surface* surface;
+        // let us control our image position
+        // so that we can move it with our keyboard.
+        SDL_Rect rect;
 
-      // please provide a path for your image
-      char cwd[100];
-      getcwd(cwd, 100);
-      strcat(cwd, "/map.bmp");
-      //Load splash image
-      surface = SDL_LoadBMP(cwd );
+        // connects our texture with rect to control position
+        SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
 
-      // loads image to our graphics hardware memory.
-      SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
+        // adjust height and width of our image box.
+        rect.w /= 6;
+        rect.h /= 6;
 
-      // clears main-memory
-      SDL_FreeSurface(surface);
+        // sets initial x-position of object
+        rect.x = (SCREEN_WIDTH - rect.w) / 2;
 
-      // let us control our image position
-      // so that we can move it with our keyboard.
-      SDL_Rect dest;
+        // sets initial y-position of object
+        rect.y = (SCREEN_HEIGHT - rect.h) / 2;
 
-      // connects our texture with dest to control position
-      SDL_QueryTexture(tex, NULL, NULL, &dest.w, &dest.h);
+        // controls annimation loop
+        int close = 0;
 
-      // adjust height and width of our image box.
-      dest.w /= 6;
-      dest.h /= 6;
+        // speed of box
+        int speed = 300;
 
-      // sets initial x-position of object
-      dest.x = (1000 - dest.w) / 2;
+        // annimation loop
+        while (!close) {
+            SDL_Event event;
 
-      // sets initial y-position of object
-      dest.y = (1000 - dest.h) / 2;
+            // Events mangement
+            while (SDL_PollEvent(&event)) {
+                switch (event.type) {
 
-      // controls annimation loop
-      int close = 0;
+                case SDL_QUIT:
+                    // handling of close button
+                    close = 1;
+                    break;
 
-      // speed of box
-      int speed = 300;
+                case SDL_KEYDOWN:
+                    // keyboard API for key pressed
+                    switch (event.key.keysym.scancode) {
+                    case SDL_SCANCODE_W:
+                    case SDL_SCANCODE_UP:
+                        rect.y -= speed / 30;
+                        break;
+                    case SDL_SCANCODE_A:
+                    case SDL_SCANCODE_LEFT:
+                        rect.x -= speed / 30;
+                        break;
+                    case SDL_SCANCODE_S:
+                    case SDL_SCANCODE_DOWN:
+                        rect.y += speed / 30;
+                        break;
+                    case SDL_SCANCODE_D:
+                    case SDL_SCANCODE_RIGHT:
+                        rect.x += speed / 30;
+                        break;
+                    }
+                }
+            }
+/*
+            // right boundary
+            if (rect.x + rect.w > 1000)
+                rect.x = 1000 - rect.w;
 
-      // annimation loop
-      while (!close) {
-          SDL_Event event;
+            // left boundary
+            if (rect.x < 0)
+                rect.x = 0;
 
-          // Events mangement
-          while (SDL_PollEvent(&event)) {
-              switch (event.type) {
+            // bottom boundary
+            if (rect.y + rect.h > 1000)
+                rect.y = 1000 - rect.h;
 
-              case SDL_QUIT:
-                  // handling of close button
-                  close = 1;
-                  break;
+            // upper boundary
+            if (rect.y < 0)
+                rect.y = 0;
+*/
+            render(rend,tex,&rect);
+        }
 
-              case SDL_KEYDOWN:
-                  // keyboard API for key pressed
-                  switch (event.key.keysym.scancode) {
-                  case SDL_SCANCODE_W:
-                  case SDL_SCANCODE_UP:
-                      dest.y -= speed / 30;
-                      break;
-                  case SDL_SCANCODE_A:
-                  case SDL_SCANCODE_LEFT:
-                      dest.x -= speed / 30;
-                      break;
-                  case SDL_SCANCODE_S:
-                  case SDL_SCANCODE_DOWN:
-                      dest.y += speed / 30;
-                      break;
-                  case SDL_SCANCODE_D:
-                  case SDL_SCANCODE_RIGHT:
-                      dest.x += speed / 30;
-                      break;
-                  }
-              }
-          }
-
-          // right boundary
-          if (dest.x + dest.w > 1000)
-              dest.x = 1000 - dest.w;
-
-          // left boundary
-          if (dest.x < 0)
-              dest.x = 0;
-
-          // bottom boundary
-          if (dest.y + dest.h > 1000)
-              dest.y = 1000 - dest.h;
-
-          // upper boundary
-          if (dest.y < 0)
-              dest.y = 0;
-
-          // clears the screen
-          SDL_RenderClear(rend);
-          SDL_RenderCopy(rend, tex, NULL, &dest);
-
-          // triggers the double buffers
-          // for multiple rendering
-          SDL_RenderPresent(rend);
-
-          // calculates to 60 fps
-          SDL_Delay(1000 / 60);
+        // rectroy texture
+        close1(rend,tex,win);
       }
-
-      // destroy texture
-      SDL_DestroyTexture(tex);
-
-      // destroy renderer
-      SDL_DestroyRenderer(rend);
-
-      // destroy window
-      SDL_DestroyWindow(win);
   return 0;
 }

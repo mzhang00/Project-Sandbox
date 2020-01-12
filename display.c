@@ -1,14 +1,5 @@
 #include "display.h"
 
-SDL_Window* gWindow = NULL;
-
-//The surface contained by the window
-SDL_Surface* gScreenSurface = NULL;
-
-//The image we will load and show on the screen
-//SDL_Surface* gHelloWorld = NULL;
-
-SDL_Surface* gXOut = NULL;
 
 
 int init()
@@ -17,31 +8,16 @@ int init()
     int success = 1;
 
     //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
         success = 0;
-    }
-    else
-    {
-        //Create window
-        gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        if( gWindow == NULL )
-        {
-            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-            success = 0;
-        }
-        else
-        {
-            //Get window surface
-            gScreenSurface = SDL_GetWindowSurface( gWindow );
-        }
     }
 
     return success;
 }
 
-int loadMedia(){
+int loadMedia(SDL_Surface * gXOut){
     //Loading success flag
     int success = 1;
     char cwd[100];
@@ -56,14 +32,15 @@ int loadMedia(){
     return success;
 }
 
-void close1(SDL_Renderer * renderer){
-    //Deallocate surface
-    SDL_FreeSurface( gXOut );
-    gXOut = NULL;
-    SDL_DestroyRenderer(renderer);
+void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win ){
+    SDL_DestroyTexture(tex);
+    tex = NULL;
+
+    SDL_DestroyRenderer(rend);
+    rend = NULL;
     //Destroy window
-    SDL_DestroyWindow( gWindow );
-    gWindow = NULL;
+    SDL_DestroyWindow( win );
+    win = NULL;
 
     //Quit SDL subsystems
     SDL_Quit();
@@ -75,8 +52,14 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void draw(SDL_Renderer * renderer, SDL_Rect * rect) {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderFillRect(renderer, rect);
-    SDL_RenderPresent(renderer);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect) {
+  SDL_RenderClear(rend);
+  SDL_RenderCopy(rend, tex, NULL, rect);
+
+  // triggers the double buffers
+  // for multiple rendering
+  SDL_RenderPresent(rend);
+
+  // calculates to 60 fps
+  SDL_Delay(1000 / 60);
 }
