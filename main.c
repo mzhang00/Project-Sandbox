@@ -32,8 +32,8 @@ int main(){
         SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
 
         // adjust height and width of our image box.
-        rect.w /= 6;
-        rect.h /= 6;
+        rect.w = 20;
+        rect.h = 20;
 
         // sets initial x-position of object
         rect.x = (SCREEN_WIDTH - rect.w) / 2;
