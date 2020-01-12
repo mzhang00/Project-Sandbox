@@ -1,5 +1,13 @@
 #include "display.h"
 
+SDL_Window* gWindow = NULL;
+
+//The surface contained by the window
+SDL_Surface* gScreenSurface = NULL;
+
+//The image we will load and show on the screen
+SDL_Surface* gHelloWorld = NULL;
+
 int init()
 {
     //Initialization flag
@@ -30,8 +38,7 @@ int init()
     return success;
 }
 
-int loadMedia()
-{
+int loadMedia(){
     //Loading success flag
     int success = 1;
     char * cwd = NULL;
@@ -39,8 +46,7 @@ int loadMedia()
     strcat(cwd, "/map.bmp");
     //Load splash image
     gHelloWorld = SDL_LoadBMP(cwd );
-    if( gHelloWorld == NULL )
-    {
+    if( gHelloWorld == NULL ){
         printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
         success = 0;
     }
@@ -48,8 +54,7 @@ int loadMedia()
     return success;
 }
 
-void close1()
-{
+void close1(){
     //Deallocate surface
     SDL_FreeSurface( gHelloWorld );
     gHelloWorld = NULL;

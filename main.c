@@ -1,7 +1,6 @@
 //Using SDL and standard IO
 #include "display.h"
 
-
 int main( int argc, char* args[] ){
   //Start up SDL and create window
    if( !init() ){

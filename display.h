@@ -1,4 +1,9 @@
 //Using SDL and standard IO
+#ifndef DISPLAY_H_INCLUDED
+#define DISPLAY_H_INCLUDED
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <strings.h>
@@ -13,16 +18,14 @@ struct unit {
   int y;
 };
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
 //The window we'll be rendering to
-SDL_Window* gWindow = NULL;
+extern SDL_Window* gWindow;// = NULL;
 
 //The surface contained by the window
-SDL_Surface* gScreenSurface = NULL;
+extern SDL_Surface* gScreenSurface; //= NULL;
 
 //The image we will load and show on the screen
-SDL_Surface* gHelloWorld = NULL;
+extern SDL_Surface* gHelloWorld; //= NULL;
 
 int init();
 
@@ -31,4 +34,5 @@ int loadMedia();
 
 //Frees media and shuts down SDL
 void close1();
->>>>>>> b52fa09f719ae15655294b26cc084e9a6fff264a
+
+#endif
