@@ -17,26 +17,15 @@ struct unit {
   int x;
   int y;
 };
-
-//The window we'll be rendering to
-extern SDL_Window* gWindow;// = NULL;
-
-//The surface contained by the window
-extern SDL_Surface* gScreenSurface; //= NULL;
-
-//The image we will load and show on the screen
-//extern SDL_Surface* gHelloWorld; //= NULL;
-
-extern SDL_Surface* gXOut;
 int init();
 
 //Loads media
 int loadMedia();
 
 //Frees media and shuts down SDL
-void close1(SDL_Renderer * renderer);
+void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
-void draw(SDL_Renderer * renderer, SDL_Rect * rect);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect);
 void clear(SDL_Renderer * renderer);
 
 #endif
