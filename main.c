@@ -11,7 +11,7 @@ int main(){
         }
         // creates a renderer to render our images
         SDL_Renderer* rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
-
+        int idx = 0;
         SDL_Surface* surface;
         char cwd[100];
         getcwd(cwd, 100);
@@ -29,20 +29,20 @@ int main(){
 
         // let us control our image position
         // so that we can move it with our keyboard.
-        SDL_Rect rect;
+        SDL_Rect **rect = malloc(6*sizeof(SDL_Rect*));
 
         // connects our texture with rect to control position
-        SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
+        for (int i = 0; i < 6; i++) {
+          SDL_QueryTexture(tex, NULL, NULL, rect[i]->w, rect[i]->h);
+          rect[i]->w /= 3;
+          rect[i]->h /= 3;
 
-        // adjust height and width of our image box.
-        rect.w /= 6;
-        rect.h /= 6;
+          // sets initial x-position of object
+          rect[i]->x = i * SCREEN_WIDTH/6;
 
-        // sets initial x-position of object
-        rect.x = (SCREEN_WIDTH - rect.w) / 2;
-
-        // sets initial y-position of object
-        rect.y = (SCREEN_HEIGHT - rect.h) / 2;
+          // sets initial y-position of object
+          rect->y = (SCREEN_HEIGHT - rect.h) / 2;
+        }
 
         // controls annimation loop
         int close = 0;
