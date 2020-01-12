@@ -15,9 +15,12 @@ int main(){
         SDL_Surface* surface;
         char cwd[100];
         getcwd(cwd, 100);
-        strcat(cwd, "/stick.bmp");
+        strcat(cwd, "/stickman.bmp");
         //Load splash image
         surface = SDL_LoadBMP(cwd );
+        if( surface == NULL ){
+            printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
+        }
 
         // loads image to our graphics hardware memory.
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
@@ -32,8 +35,8 @@ int main(){
         SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
 
         // adjust height and width of our image box.
-        rect.w = 20;
-        rect.h = 20;
+        rect.w /= 6;
+        rect.h /= 6;
 
         // sets initial x-position of object
         rect.x = (SCREEN_WIDTH - rect.w) / 2;
