@@ -1,112 +1,38 @@
-//Using SDL and standard IO
-#include "display.h"
-#include "move.h"
+#include <SDL2/SDL_timer.h>
+#include <SDL2/SDL.h>
 
-int main( int argc, char* args[] ){
-  // retutns zero on success else non-zero
-      if (!init()) {
-        printf("Failed to initialize\n");
-      }
-      else {
-        SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-        if( win == NULL ){
-            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-        }
-        // creates a renderer to render our images
-        SDL_Renderer* rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+int main(){
+  SDL_Window *window;                    // Declare a pointer
 
-        SDL_Surface* surface;
-        char cwd[100];
-        getcwd(cwd, 100);
-        strcat(cwd, "/map.bmp");
-        //Load splash image
-        surface = SDL_LoadBMP(cwd );
+     SDL_Init(SDL_INIT_VIDEO);              // Initialize SDL2
 
-        // loads image to our graphics hardware memory.
-        SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
-        // clears main-memory
-        SDL_FreeSurface(surface);
+     // Create an application window with the following settings:
+     window = SDL_CreateWindow(
+         "An SDL2 window",                  // window title
+         SDL_WINDOWPOS_UNDEFINED,           // initial x position
+         SDL_WINDOWPOS_UNDEFINED,           // initial y position
+         640,                               // width, in pixels
+         480,                               // height, in pixels
+         SDL_WINDOW_RESIZABLE                 // flags - see below
+     );
 
-        // let us control our image position
-        // so that we can move it with our keyboard.
-        SDL_Rect rect;
+     // Check that the window was successfully created
+     if (window == NULL) {
+         // In the case that the window could not be made...
+         printf("Could not create window: %s\n", SDL_GetError());
+         return 1;
+     }
 
-        // connects our texture with rect to control position
-        SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
+     // The window is open: could enter program loop here (see SDL_PollEvent())
 
-        // adjust height and width of our image box.
-        rect.w /= 6;
-        rect.h /= 6;
+     SDL_Delay(3000);  // Pause execution for 3000 milliseconds, for example
 
-        // sets initial x-position of object
-        rect.x = (SCREEN_WIDTH - rect.w) / 2;
+     // Close and destroy the window
+     SDL_DestroyWindow(window);
 
-        // sets initial y-position of object
-        rect.y = (SCREEN_HEIGHT - rect.h) / 2;
+     // Clean up
+     SDL_Quit();
 
-        // controls annimation loop
-        int close = 0;
 
-        // speed of box
-        int speed = 300;
-
-        // annimation loop
-        while (!close) {
-            SDL_Event event;
-
-            // Events mangement
-            while (SDL_PollEvent(&event)) {
-                switch (event.type) {
-
-                case SDL_QUIT:
-                    // handling of close button
-                    close = 1;
-                    break;
-
-                case SDL_KEYDOWN:
-                    // keyboard API for key pressed
-                    switch (event.key.keysym.scancode) {
-                    case SDL_SCANCODE_W:
-                    case SDL_SCANCODE_UP:
-                        rect.y -= speed / 30;
-                        break;
-                    case SDL_SCANCODE_A:
-                    case SDL_SCANCODE_LEFT:
-                        rect.x -= speed / 30;
-                        break;
-                    case SDL_SCANCODE_S:
-                    case SDL_SCANCODE_DOWN:
-                        rect.y += speed / 30;
-                        break;
-                    case SDL_SCANCODE_D:
-                    case SDL_SCANCODE_RIGHT:
-                        rect.x += speed / 30;
-                        break;
-                    }
-                }
-            }
-/*
-            // right boundary
-            if (rect.x + rect.w > 1000)
-                rect.x = 1000 - rect.w;
-
-            // left boundary
-            if (rect.x < 0)
-                rect.x = 0;
-
-            // bottom boundary
-            if (rect.y + rect.h > 1000)
-                rect.y = 1000 - rect.h;
-
-            // upper boundary
-            if (rect.y < 0)
-                rect.y = 0;
-*/
-            render(rend,tex,&rect);
-        }
-
-        // rectroy texture
-        close1(rend,tex,win);
-      }
   return 0;
 }
