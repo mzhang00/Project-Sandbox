@@ -20,12 +20,13 @@ int main( int argc, char* args[] ){
            if( e.type == SDL_QUIT )
            {
              quit = 1;
+             printf("Closing the window ...\n");
            }
            //Apply the image
           SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
 
           //Update the surface
-          SDL_UpdateWindowSurface( gWindow );
+          SDL_UpdateWindowSurface( gXOut );
        }
       }
     }
