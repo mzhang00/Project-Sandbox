@@ -1,5 +1,4 @@
 #include <SDL2/SDL_timer.h>
-#include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
 
 int main(){
@@ -14,7 +13,7 @@ int main(){
          SDL_WINDOWPOS_UNDEFINED,           // initial y position
          640,                               // width, in pixels
          480,                               // height, in pixels
-         SDL_WINDOW_OPENGL                  // flags - see below
+         SDL_WINDOW_RESIZABLE                 // flags - see below
      );
 
      // Check that the window was successfully created
