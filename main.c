@@ -86,7 +86,7 @@ int main(){
                     case SDL_SCANCODE_W:
                     case SDL_SCANCODE_UP:
                         //rect.y -= movement;
-                        rect.y -= 5;
+                        rect.y -= (int)movement;
                         break;
                     case SDL_SCANCODE_A:
                     case SDL_SCANCODE_LEFT:
