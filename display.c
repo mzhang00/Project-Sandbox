@@ -11,7 +11,6 @@ SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* gXOut = NULL;
 
 
-
 int init()
 {
     //Initialization flag
@@ -57,15 +56,27 @@ int loadMedia(){
     return success;
 }
 
-void close1(){
+void close1(SDL_Renderer * renderer){
     //Deallocate surface
     SDL_FreeSurface( gXOut );
     gXOut = NULL;
-
+    SDL_DestroyRenderer(renderer);
     //Destroy window
     SDL_DestroyWindow( gWindow );
     gWindow = NULL;
 
     //Quit SDL subsystems
     SDL_Quit();
+}
+
+void clear(SDL_Renderer * renderer) {
+    //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+}
+
+void draw(SDL_Renderer * renderer, SDL_Rect * rect) {
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderFillRect(renderer, rect);
+    SDL_RenderPresent(renderer);
 }

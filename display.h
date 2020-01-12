@@ -34,6 +34,9 @@ int init();
 int loadMedia();
 
 //Frees media and shuts down SDL
-void close1();
+void close1(SDL_Renderer * renderer);
+
+void draw(SDL_Renderer * renderer, SDL_Rect * rect);
+void clear(SDL_Renderer * renderer);
 
 #endif
