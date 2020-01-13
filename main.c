@@ -61,15 +61,15 @@ int main(){
         }
         //Displaying Gun
         getcwd(cwd, 100);
-        strcat(cwd, "/rifle.bmp");
+        strcat(cwd, "/rifle2.bmp");
         surface = SDL_LoadBMP(cwd);
-        SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
         SDL_Rect rifle;
-        SDL_QueryTexture(tex3, NULL, NULL, &rifle.w, &rifle.h);
-        background.x = x-coor;
-        background.y = y-coor;
-        background.w = width;
-        background.h = width;
+        SDL_QueryTexture(rifleText, NULL, NULL, &rifle.w, &rifle.h);
+        rifle.x = 0;
+        rifle.y = 0;
+        rifle.w = SCREEN_WIDTH;
+        rifle.h = SCREEN_HEIGHT/2;
         SDL_FreeSurface(surface);
         // controls annimation loop
         int close = 0;
@@ -130,7 +130,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, tex2, background);
+            render(rend,tex,rect, tex2, background,&rifle, rifleText);
         }
 
         // rectroy texture
