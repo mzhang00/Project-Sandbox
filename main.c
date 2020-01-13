@@ -13,6 +13,7 @@
 #include <sys/stat.h>
 
 int main(int argc, char * argv[]){
+  printf("Connected.\n");
   while (1){
     char name[500];
     if (argc > 1) {
