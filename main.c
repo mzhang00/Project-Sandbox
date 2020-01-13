@@ -24,7 +24,8 @@ int main(int argc, char * argv[]){
         i++;
       }
       name[i] = '\0';
+    }
+    printf("%s\n", name);
   }
-  printf("%s\n", name);
   return 0;
 }
