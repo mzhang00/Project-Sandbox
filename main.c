@@ -22,6 +22,19 @@ int main(){
             printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
         }
 
+        SDL_Surface* surface2 = NULL;
+        getcwd(cwd, 100);
+        strcat(cwd, "/map.bmp");
+        //Load splash image
+        surface2 = SDL_LoadBMP(cwd );
+        SDL_Texture* tex2 = SDL_CreateTextureFromSurface(rend, surface2);
+        SDL_Rect * background = malloc(sizeof(SDL_Rect));
+        SDL_QueryTexture(tex2, NULL, NULL, &(background->w), &(background->h));
+        background->x = 0;
+        background->y = 0;
+        background->w = SCREEN_WIDTH;
+        background->h = SCREEN_HEIGHT;
+
         // loads image to our graphics hardware memory.
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
         SDL_FreeSurface(surface);
@@ -105,11 +118,12 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect);
+            render(rend,tex,rect, tex2, background);
         }
 
         // rectroy texture
         free(rect);
+        free(background);
         close1(rend,tex,win);
       }
 

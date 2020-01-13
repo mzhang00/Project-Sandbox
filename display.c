@@ -52,12 +52,12 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture * tex2, SDL_Rect *rect2) {
   SDL_RenderClear(rend);
+  SDL_RenderCopy(rend, tex2, NULL, rect2);
   for (int i = 0; i < 6;i++) {
     SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
   }
-
   // triggers the double buffers
   // for multiple rendering
   SDL_RenderPresent(rend);
