@@ -13,6 +13,9 @@
 #include <sys/stat.h>
 
 int main(int argc, char * argv[]){
+  printf("Please enter your name: ");
+  char nickname[500];
+  fgets(nickname, 500, stdin)
   printf("Connected.\n");
   while (1){
     char name[500];
