@@ -18,13 +18,13 @@ ClientList *root, *now;
 void catch_ctrl_c_and_exit(int sig) {
     ClientList *tmp;
     while (root != NULL) {
-        printf("\nClose socketfd: %d\n", root->data);
+        //printf("\nClose socketfd: %d\n", root->data);
         close(root->data); // close all socket include server_sockfd
         tmp = root;
         root = root->link;
         free(tmp);
     }
-    printf("Bye\n");
+    printf("\nExited successfully\n");
     exit(EXIT_SUCCESS);
 }
 

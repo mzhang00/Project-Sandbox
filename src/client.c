@@ -14,7 +14,7 @@
 // Global variables
 volatile sig_atomic_t flag = 0;
 int sockfd = 0;
-char nickname[LENGTH_NAME] = {};
+char nickname[LENGTH_NAME];
 
 void catch_ctrl_c_and_exit(int sig) {
     flag = 1;
@@ -29,8 +29,8 @@ void recv_msg_handler() {
             str_overwrite_stdout();
         } else if (receive == 0) {
             break;
-        } else { 
-            // -1 
+        } else {
+            // -1
         }
     }
 }
@@ -61,13 +61,7 @@ int main()
 
     // Naming
     printf("Please enter your name: ");
-    if (fgets(nickname, LENGTH_NAME, stdin) != NULL) {
-        str_trim_lf(nickname, LENGTH_NAME);
-    }
-    if (strlen(nickname) < 2 || strlen(nickname) >= LENGTH_NAME-1) {
-        printf("\nName must be more than one and less than thirty characters.\n");
-        exit(EXIT_FAILURE);
-    }
+    fgets(nickname, LENGTH_NAME, stdin);
 
     // Create socket
     sockfd = socket(AF_INET , SOCK_STREAM , 0);
@@ -92,7 +86,7 @@ int main()
         printf("Connection to Server error!\n");
         exit(EXIT_FAILURE);
     }
-    
+
     // Names
     getsockname(sockfd, (struct sockaddr*) &client_info, (socklen_t*) &c_addrlen);
     getpeername(sockfd, (struct sockaddr*) &server_info, (socklen_t*) &s_addrlen);
