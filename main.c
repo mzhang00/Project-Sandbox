@@ -59,6 +59,18 @@ int main(){
           // sets initial y-position of object
           rect[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
         }
+        //Displaying Gun
+        getcwd(cwd, 100);
+        strcat(cwd, "/rifle.bmp");
+        surface = SDL_LoadBMP(cwd);
+        SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_Rect rifle;
+        SDL_QueryTexture(tex3, NULL, NULL, &rifle.w, &rifle.h);
+        background.x = x-coor;
+        background.y = y-coor;
+        background.w = width;
+        background.h = width;
+        SDL_FreeSurface(surface);
         // controls annimation loop
         int close = 0;
 
