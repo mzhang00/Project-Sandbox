@@ -31,5 +31,6 @@ int main(int argc, char * argv[]){
     }
     printf("%s\n", name);
   }
+  // https://github.com/lovenery/c-chatroom/blob/master/src/client.c
   return 0;
 }
