@@ -16,7 +16,7 @@ int main(int argc, char * argv[]){
   printf("Please enter your name: ");
   char nickname[500];
   fgets(nickname, 500, stdin);
-  printf("Connected.\n");
+  printf("Connected %s.\n", nickname);
   while (1){
     char name[500];
     if (argc > 1) {
