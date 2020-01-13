@@ -24,26 +24,28 @@ int main(){
 
         // loads image to our graphics hardware memory.
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
-        // clears main-memory
         SDL_FreeSurface(surface);
+        // clears main-memory
 
         // let us control our image position
         // so that we can move it with our keyboard.
-        SDL_Rect **rect = malloc(6*sizeof(SDL_Rect*));
+        SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
 
         // connects our texture with rect to control position
         for (int i = 0; i < 6; i++) {
-          SDL_QueryTexture(tex, NULL, NULL, rect[i]->w, rect[i]->h);
-          rect[i]->w /= 3;
-          rect[i]->h /= 3;
+          SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
+          if( rect+ i == NULL ){
+              printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
+          }
+          rect[i].w /= 3;
+          rect[i].h /= 3;
 
           // sets initial x-position of object
-          rect[i]->x = i * SCREEN_WIDTH/6;
+          rect[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
 
           // sets initial y-position of object
-          rect->y = (SCREEN_HEIGHT - rect.h) / 2;
+          rect[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
         }
-
         // controls annimation loop
         int close = 0;
 
@@ -66,21 +68,25 @@ int main(){
                 case SDL_KEYDOWN:
                     // keyboard API for key pressed
                     switch (event.key.keysym.scancode) {
-                    case SDL_SCANCODE_W:
                     case SDL_SCANCODE_UP:
-                        rect.y -= speed / 30;
+                        rect[idx].y -= speed / 30;
                         break;
-                    case SDL_SCANCODE_A:
                     case SDL_SCANCODE_LEFT:
-                        rect.x -= speed / 30;
+                        rect[idx].x -= speed / 30;
                         break;
-                    case SDL_SCANCODE_S:
                     case SDL_SCANCODE_DOWN:
-                        rect.y += speed / 30;
+                        rect[idx].y += speed / 30;
                         break;
-                    case SDL_SCANCODE_D:
                     case SDL_SCANCODE_RIGHT:
-                        rect.x += speed / 30;
+                        rect[idx].x += speed / 30;
+                        break;
+                    case SDL_SCANCODE_RETURN:
+                        if (idx < 5) {
+                          idx++;
+                        }
+                        else {
+                          idx = 0;
+                        }
                         break;
                     }
                 }
@@ -99,10 +105,11 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,&rect);
+            render(rend,tex,rect);
         }
 
         // rectroy texture
+        free(rect);
         close1(rend,tex,win);
       }
 
