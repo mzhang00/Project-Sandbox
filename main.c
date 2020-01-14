@@ -15,7 +15,7 @@ int main(){
         SDL_Surface* surface;
         char cwd[100];
         getcwd(cwd, 100);
-        strcat(cwd, "/man.bmp");
+        strcat(cwd, "/mai.bmp");
         //Load splash image
         surface = SDL_LoadBMP(cwd );
         if( surface == NULL ){
