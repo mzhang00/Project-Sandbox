@@ -69,7 +69,7 @@ int main(){
           //Load splash image
           surface = SDL_LoadBMP(cwd);
           SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
-          SDL_Rect *screen;
+          SDL_Rect screen;
           SDL_QueryTexture(tex3, NULL, NULL, &screen->w, &screen->h);
           screen->x = 110;
           screen->y = 380;
@@ -78,7 +78,7 @@ int main(){
           }
           SDL_FreeSurface(surface);
           screens[i] = screen;
-
+          screenText[i] = *tex3;
         }
 
         // let us control our image position
