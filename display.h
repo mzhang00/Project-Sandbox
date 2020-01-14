@@ -16,6 +16,7 @@ struct unit {
   int moves_left;
   int x;
   int y;
+  int team;
 };
 int init();
 
