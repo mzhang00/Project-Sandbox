@@ -40,6 +40,20 @@ int main(){
         SDL_FreeSurface(surface);
         // clears main-memory
 
+        getcwd(cwd, 100);
+        strcat(cwd, "/gunscreen.bmp");
+        //Load splash image
+        surface = SDL_LoadBMP(cwd );
+        SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_Rect * gun_screen;
+        SDL_QueryTexture(tex3, NULL, NULL, &gun_screen->w, &gun_screen->h);
+        gun_screen->x = 110;
+        gun_screen->y = 380;
+        if( surface == NULL ){
+            printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
+        }
+        SDL_FreeSurface(surface);
+
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
@@ -118,7 +132,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, tex2, background);
+            render(rend,tex,rect, tex2, background, tex3, gun_screen);
         }
 
         // rectroy texture
