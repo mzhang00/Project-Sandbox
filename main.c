@@ -51,34 +51,36 @@ int main(){
         //Creating array of Texture screens
 
         SDL_Rect * screens = malloc(4*sizeof(SDL_Rect));
-        SDL_Rect * screenText = malloc(4*sizeof(SDL_Rect));
+        SDL_Texture ** screenText = malloc(4*sizeof(SDL_Texture *));
         char fileName[50];
+        int i;
         for(i=0;i<4;i++){
           switch(i){
             case 0:
-              strcpy(fileName,"mainscreen.bmp");
+              strcpy(fileName,"/mainscreen.bmp");
+              break;
             case 1:
-              strcpy(fileName,"movecontrol.bmp");
+              strcpy(fileName,"/movecontrol.bmp");
+              break;
             case 2:
-              strcpy(fileName,"gunscreen.bmp");
+              strcpy(fileName,"/gunscreen.bmp");
+              break;
             case 3:
-              strcpy(fileName,"guncontrol.bmp");
+              strcpy(fileName,"/guncontrol.bmp");
+              break;
           }
           getcwd(cwd, 100);
           strcat(cwd, fileName);
           //Load splash image
           surface = SDL_LoadBMP(cwd);
-          SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
-          SDL_Rect screen;
-          SDL_QueryTexture(tex3, NULL, NULL, &screen->w, &screen->h);
-          screen->x = 110;
-          screen->y = 380;
+          screenText[i] = SDL_CreateTextureFromSurface(rend, surface);
+          SDL_QueryTexture(screenText[i], NULL, NULL, &(screens[i].w), &(screens[i].h));
+          screens[i].x = 110;
+          screens[i].y = 380;
           if( surface == NULL ){
               printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
           }
           SDL_FreeSurface(surface);
-          screens[i] = screen;
-          screenText[i] = *tex3;
         }
 
         // let us control our image position
@@ -93,7 +95,7 @@ int main(){
           }
           rect[i].w /= 3;
           rect[i].h /= 3;
-
+        // rectroy textu
           // sets initial x-position of object
           rect[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
 
@@ -112,54 +114,66 @@ int main(){
 
             // Events mangement
             while (SDL_PollEvent(&event)) {
-                switch (event.type) {
-
-                case SDL_QUIT:
-                    // handling of close button
-                    close = 1;
-                    break;
-
-                case SDL_KEYDOWN:
-                    // keyboard API for key pressed
+              if (event.type == SDL_QUIT){
+                close = 1;
+                break;
+              }
+              else if(event.type == SDL_KEYDOWN){
+                switch(mode){
+                  case 0:
+                  case 1:
+                  // keyboard API for key presse
                     switch (event.key.keysym.scancode) {
-                    case SDL_SCANCODE_UP:
-                        rect[idx].y -= speed / 30;
-                        break;
-                    case SDL_SCANCODE_LEFT:
-                        rect[idx].x -= speed / 30;
-                        break;
-                    case SDL_SCANCODE_DOWN:
-                        rect[idx].y += speed / 30;
-                        break;
-                    case SDL_SCANCODE_RIGHT:
-                        rect[idx].x += speed / 30;
-                        break;
-                    case SDL_SCANCODE_RETURN:
-                        if (idx < 5) {
-                          idx++;
-                        }
-                        else {
-                          idx = 0;
-                        }
-                        break;
+                      case SDL_SCANCODE_UP:
+                          rect[idx].y -= speed / 30;
+                          break;
+                      case SDL_SCANCODE_LEFT:
+                          rect[idx].x -= speed / 30;
+                          break;
+                      case SDL_SCANCODE_DOWN:
+                          rect[idx].y += speed / 30;
+                          break;
+                      case SDL_SCANCODE_RIGHT:        // rectroy textu
+                          rect[idx].x += speed / 30;
+                          break;
+                      case SDL_SCANCODE_RETURN:
+                          if (idx < 5) {
+                            idx++;
+                          }
+                          else {
+                            idx = 0;
+                          }
+                          break;
                     }
+                    break;
+                  case 2:
+                  case 3:
                 }
             }
-/*
-            // right boundary
-            if (rect.x + rect.w > 1000)
-                rect.x = 1000 - rect.w;
-            // left boundary
-            if (rect.x < 0)
-                rect.x = 0;
-            // bottom boundary
-            if (rect.y + rect.h > 1000)
-                rect.y = 1000 - rect.h;
-            // upper boundary
-            if (rect.y < 0)
-                rect.y = 0;
-*/
-            render(rend,tex,rect, tex2, background, tex3, gun_screen);
+            /*
+                        // right boundary
+                        if (rect.x + rect.w > 1000)
+                            rect.x = 1000 - rect.w;
+                        // left boundary
+                        if (rect.x < 0)
+                            rect.x = 0;
+                        // bottom boundary
+                        if (rect.y + rect.h > 1000)
+                            rect.y = 1000 - rect.h;
+                        // upper boundary
+                        if (rect.y < 0)
+                            rect.y = 0;
+            */
+                        render(rend,tex,rect, tex2, background, screenText[mode], &(screens[mode]));
+
+
+
+
+          }
+        }
+
+            }
+
         }
 
         // rectroy texture
