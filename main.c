@@ -45,20 +45,41 @@ int main(){
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
         SDL_FreeSurface(surface);
         // clears main-memory
-        
-        getcwd(cwd, 100);
-        strcat(cwd, "/gunscreen.bmp");
-        //Load splash image
-        surface = SDL_LoadBMP(cwd );
-        SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
-        SDL_Rect * gun_screen;
-        SDL_QueryTexture(tex3, NULL, NULL, &gun_screen->w, &gun_screen->h);
-        gun_screen->x = 110;
-        gun_screen->y = 380;
-        if( surface == NULL ){
-            printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
+
+
+        //Creating array of Rect-screens
+        //Creating array of Texture screens
+
+        SDL_Rect * screens = malloc(4*sizeof(SDL_Rect));
+        SDL_Rect * screenText = malloc(4*sizeof(SDL_Rect));
+        char fileName[50];
+        for(i=0;i<4;i++){
+          switch(i){
+            case 0:
+              strcpy(fileName,"mainscreen.bmp");
+            case 1:
+              strcpy(fileName,"movecontrol.bmp");
+            case 2:
+              strcpy(fileName,"gunscreen.bmp");
+            case 3:
+              strcpy(fileName,"guncontrol.bmp");
+          }
+          getcwd(cwd, 100);
+          strcat(cwd, fileName);
+          //Load splash image
+          surface = SDL_LoadBMP(cwd);
+          SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
+          SDL_Rect *screen;
+          SDL_QueryTexture(tex3, NULL, NULL, &screen->w, &screen->h);
+          screen->x = 110;
+          screen->y = 380;
+          if( surface == NULL ){
+              printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
+          }
+          SDL_FreeSurface(surface);
+          screens[i] = screen;
+
         }
-        SDL_FreeSurface(surface);
 
         // let us control our image position
         // so that we can move it with our keyboard.
