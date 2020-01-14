@@ -5,6 +5,12 @@ int main(){
         printf("Failed to initialize\n");
       }
   else {
+        //Different Types of Modes:
+        //Start Mode- mainscreen.bmp - 0
+        //Movement Mode- movement screen -1
+        //Gun Mode- rifle.bmp - 2
+        //Gun Control Mode -3
+        int mode = 0;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -39,7 +45,7 @@ int main(){
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
         SDL_FreeSurface(surface);
         // clears main-memory
-
+        
         getcwd(cwd, 100);
         strcat(cwd, "/gunscreen.bmp");
         //Load splash image
