@@ -125,13 +125,13 @@ int main(){
                     // keyboard API for key pressed
                     switch (event.key.keysym.scancode) {
                     case SDL_SCANCODE_UP:
-                        rect[idx].y -= speed / 30;
+                        up_check(rect,idx);
                         break;
                     case SDL_SCANCODE_LEFT:
                         rect[idx].x -= speed / 30;
                         break;
                     case SDL_SCANCODE_DOWN:
-                        rect[idx].y += speed / 30;
+                        down_check(rect,idx);
                         break;
                     case SDL_SCANCODE_RIGHT:
                         rect[idx].x += speed / 30;
