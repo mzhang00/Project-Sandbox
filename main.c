@@ -121,6 +121,20 @@ int main(){
               else if(event.type == SDL_KEYDOWN){
                 switch(mode){
                   case 0:
+                    switch (event.key.keysym.scancode) {
+                      case SDL_SCANCODE_1:
+                        mode = 1;
+                        break;
+                      case SDL_SCANCODE_2:
+                        if (idx < 5) {
+                          idx++;
+                        }
+                        else {
+                          idx = 0;
+                        }
+                        break;
+                    }
+                    break;
                   case 1:
                   // keyboard API for key presse
                     switch (event.key.keysym.scancode) {
@@ -136,18 +150,44 @@ int main(){
                       case SDL_SCANCODE_RIGHT:        // rectroy textu
                           rect[idx].x += speed / 30;
                           break;
-                      case SDL_SCANCODE_RETURN:
-                          if (idx < 5) {
-                            idx++;
-                          }
-                          else {
-                            idx = 0;
-                          }
-                          break;
+                      case SDL_SCANCODE_1:
+                        mode = 2;
+                        break;
                     }
                     break;
                   case 2:
+                    switch (event.key.keysym.scancode) {
+                      case SDL_SCANCODE_1:
+                        //GRenarde
+                        break;
+                      case SDL_SCANCODE_2:
+                        mode = 3;
+                        break;
+                      case SDL_SCANCODE_3:
+                        //boot
+                        break;
+                      case SDL_SCANCODE_4:
+                        if (idx < 5) {
+                          idx++;
+                        }
+                        else {
+                          idx = 0;
+                        }
+                        break;
+                    }
+                    break;
                   case 3:
+                    switch (event.key.keysym.scancode) {
+                      case SDL_SCANCODE_SPACE:
+                        if (idx < 5) {
+                          idx++;
+                        }
+                        else {
+                          idx = 0;
+                        }
+                        break;
+
+                    }
                 }
             }
             /*
@@ -164,23 +204,14 @@ int main(){
                         if (rect.y < 0)
                             rect.y = 0;
             */
-                        render(rend,tex,rect, tex2, background, screenText[mode], &(screens[mode]));
-
-
-
-
-          }
+          render(rend,tex,rect, tex2, background, screenText[mode], &(screens[mode]));
         }
-
-            }
-
-        }
-
-        // rectroy texture
-        free(rect);
-        free(background);
-        close1(rend,tex,win);
       }
+      // rectroy texture
+      free(rect);
+      free(background);
+      close1(rend,tex,win);
+  }
 
 
   return 0;
