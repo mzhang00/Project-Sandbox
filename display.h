@@ -17,6 +17,8 @@ struct unit {
   int x;
   int y;
   int team;
+  SDL_Rect unit_rect;
+  SDL_Texture* unit_tex;
 };
 int init();
 
@@ -26,7 +28,7 @@ int loadMedia();
 //Frees media and shuts down SDL
 void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect,SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect,SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3, struct unit * units, SDL_Rect * rect4);
 void clear(SDL_Renderer * renderer);
 
 #endif

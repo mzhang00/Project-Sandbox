@@ -51,7 +51,7 @@ int main(){
         //Load splash image
         surface = SDL_LoadBMP(cwd );
         SDL_Texture* tex3 = SDL_CreateTextureFromSurface(rend, surface);
-        SDL_Rect * gun_screen;
+        SDL_Rect *gun_screen = malloc(sizeof(SDL_Rect));
         SDL_QueryTexture(tex3, NULL, NULL, &gun_screen->w, &gun_screen->h);
         gun_screen->x = 110;
         gun_screen->y = 380;
@@ -63,21 +63,57 @@ int main(){
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
-
+	SDL_Rect * healthbars = malloc(6*sizeof(SDL_Rect));
+        struct unit * units = malloc(6*sizeof(struct unit));
         // connects our texture with rect to control position
         for (int i = 0; i < 6; i++) {
           SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
           if( rect+ i == NULL ){
               printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
           }
+          // Set render color to red ( background will be rendered in this color )
+        SDL_SetRenderDrawColor( rend, 0, 0, 0, 255 );
+
+
+        // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
+        healthbars[i].x = 5;
+        healthbars[i].y = 30 * i + 95;
+        healthbars[i].w = 200;
+        healthbars[i].h = 25;
+
+        // Render rect
+        SDL_RenderFillRect( rend, &healthbars[i] );
+
+        SDL_SetRenderDrawColor( rend, 255, 0, 0, 255 );
+
+
+        // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
+        // SDL_Rect r;
+        healthbars[i].x = 5;
+        healthbars[i].y = 30 * i + 95;
+        double c = ((double) units[0].health/ (double) 100) * (double) 200;
+        healthbars[i].w = (int) c;
+        healthbars[i].h = 25;
+
+        // Render rect
+        SDL_RenderFillRect( rend, &healthbars[i] );
           rect[i].w /= 3;
           rect[i].h /= 3;
+          units[i].number = 0;
+          units[i].health = 75;
+          units[i].weapon_id = 0; 
+          units[i].moves_left = 10;
+          units[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
+          units[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
+          units[i].team = 0;
+          units[i].unit_rect = rect[i];
+          units[i].unit_tex = tex;
 
           // sets initial x-position of object
-          rect[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
+          rect[i].x = units[i].x;
 
           // sets initial y-position of object
-          rect[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
+          rect[i].y = units[i].y;
         }
         // controls annimation loop
         int close = 0;
@@ -138,7 +174,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, tex2, background, tex3, gun_screen);
+            render(rend,tex,rect, tex2, background, tex3, gun_screen, units, healthbars);
         }
 
         // rectroy texture

@@ -1,5 +1,5 @@
 #include "display.h"
-
+#include <stdlib.h>
 
 
 int init()
@@ -52,13 +52,22 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3, struct unit * units, SDL_Rect * rect4) {
   SDL_RenderClear(rend);
   SDL_RenderCopy(rend, tex2, NULL, rect2);
-  for (int i = 0; i < 6;i++) {
+  int i;
+  for (i = 0; i < 6;i++) {
     SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
+    SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
+    SDL_RenderCopy(rend, tex, NULL, &(rect4[i]));
   }
   SDL_RenderCopy(rend, tex3, NULL, rect3);
+
+    
+
+        // Render the rect to the screen
+        SDL_RenderPresent(rend);
+
   // triggers the double buffers
   // for multiple rendering
   SDL_RenderPresent(rend);
