@@ -8,6 +8,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <pthread.h>
+#include "proto.h"
+#include "server.h"
 
 int server_sockfd = 0, client_sockfd = 0;
 ClientList *root, *now;
@@ -92,12 +94,7 @@ int main()
 {
     signal(SIGINT, catch_ctrl_c_and_exit);
 
-    // Create socket
     server_sockfd = socket(AF_INET , SOCK_STREAM , 0);
-    if (server_sockfd == -1) {
-        printf("Fail to create a socket.");
-        exit(EXIT_FAILURE);
-    }
 
     // Socket information
     struct sockaddr_in server_info, client_info;
@@ -109,7 +106,6 @@ int main()
     server_info.sin_addr.s_addr = INADDR_ANY;
     server_info.sin_port = htons(8888);
 
-    // Bind and Listen
     bind(server_sockfd, (struct sockaddr *)&server_info, s_addrlen);
     listen(server_sockfd, 5);
 
