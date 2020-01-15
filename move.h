@@ -5,6 +5,6 @@
 #include <stdio.h>
 
 
-void move(SDL_Event ev, SDL_Rect * rec);
+void move(SDL_Rect * rec, int num);
 
 #endif

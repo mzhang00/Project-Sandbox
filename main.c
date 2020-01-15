@@ -1,4 +1,5 @@
 #include "display.h"
+#include "move.h"
 
 int main(){
   if (!init()) {
@@ -38,17 +39,37 @@ int main(){
           if( rect+ i == NULL ){
               printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
           }
-          rect[i].w /= 5;
-          rect[i].h /= 6;
-
-          // sets initial x-position of object
-          rect[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
-
-          // sets initial y-position of object
-          rect[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
+          rect[i].w /= 14;
+          rect[i].h /= 16;
+          switch(i) {
+            case 0:
+              rect[i].x = 12;
+              rect[i].y = 284;
+              break;
+            case 1:
+              rect[i].x = 70;
+              rect[i].y = 194;
+              break;
+            case 2:
+              rect[i].x = 190;
+              rect[i].y = 174;
+              break;
+            case 3:
+              rect[i].x = 400;
+              rect[i].y = 284;
+              break;
+            case 4:
+              rect[i].x = 520;
+              rect[i].y = 170;
+              break;
+            case 5:
+              rect[i].x = 400;
+              rect[i].y = 196;
+              break;
+          }
         }
 
-
+        /*
         SDL_Rect * menus = malloc(4*sizeof(SDL_Rect));
         SDL_Texture * menus_tex = malloc(4*sizeof(SDL_Rect));
 
@@ -66,7 +87,7 @@ int main(){
 
           // sets initial y-position of object
           rect[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
-        }
+        }*/
 
         getcwd(cwd, 100);
         strcat(cwd, "/map.bmp");
@@ -85,7 +106,7 @@ int main(){
         int close = 0;
 
         // speed of box
-        int speed = 300;
+        int speed = 100;
 
         // annimation loop
         while (!close) {
@@ -126,6 +147,7 @@ int main(){
                     }
                 }
             }
+            move(rect, idx);
 /*
             // right boundary
             if (rect.x + rect.w > 1000)
