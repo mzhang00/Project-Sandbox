@@ -49,10 +49,15 @@ int main(int argc, char * argv[]){
       }
       fclose(f);
 
+    }else if (strcmp(name, "clear") == 0){
+
+      FILE *f = fopen("log.txt", "w");
+      fclose(f);
+
     }else{
       FILE *f = fopen("log.txt", "a");
 
-      fprintf(f, "%s\n", name + nickname);
+      fprintf(f, "%s\n", strcat(name, nickname));
 
       fclose(f);
 
