@@ -1,5 +1,5 @@
 #include "display.h"
-
+#include <time.h>
 int main(){
   if (!init()) {
         printf("Failed to initialize\n");
@@ -45,7 +45,7 @@ int main(){
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
         SDL_FreeSurface(surface);
         // clears main-memory
-        
+
         getcwd(cwd, 100);
         strcat(cwd, "/gunscreen.bmp");
         //Load splash image
@@ -63,51 +63,38 @@ int main(){
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
-	SDL_Rect * healthbars = malloc(6*sizeof(SDL_Rect));
+	      SDL_Rect * healthbars = malloc(6*sizeof(SDL_Rect));
         struct unit * units = malloc(6*sizeof(struct unit));
         // connects our texture with rect to control position
-        for (int i = 0; i < 6; i++) {
-          SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
-          if( rect+ i == NULL ){
-              printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
-          }
-          // Set render color to red ( background will be rendered in this color )
-        SDL_SetRenderDrawColor( rend, 0, 0, 0, 255 );
-
-
-        // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-        healthbars[i].x = 5;
-        healthbars[i].y = 30 * i + 95;
-        healthbars[i].w = 200;
-        healthbars[i].h = 25;
-
-        // Render rect
-        SDL_RenderFillRect( rend, &healthbars[i] );
-
-        SDL_SetRenderDrawColor( rend, 255, 0, 0, 255 );
-
-
-        // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-        // SDL_Rect r;
-        healthbars[i].x = 5;
-        healthbars[i].y = 30 * i + 95;
-        double c = ((double) units[0].health/ (double) 100) * (double) 200;
-        healthbars[i].w = (int) c;
-        healthbars[i].h = 25;
-
-        // Render rect
-        SDL_RenderFillRect( rend, &healthbars[i] );
-          rect[i].w /= 3;
-          rect[i].h /= 3;
+        int i;
+        srand(time(0));
+        for (i=0;i<6;i++){
           units[i].number = 0;
-          units[i].health = 75;
-          units[i].weapon_id = 0; 
+          units[i].health = rand()%75;
+          units[i].weapon_id = 0;
           units[i].moves_left = 10;
           units[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
           units[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
           units[i].team = 0;
           units[i].unit_rect = rect[i];
           units[i].unit_tex = tex;
+        }
+        for (i = 0; i < 6; i++) {
+          SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
+          if( rect+ i == NULL ){
+              printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
+          }
+
+
+          // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
+          healthbars[i].x = units[i].x;
+          healthbars[i].y = units[i].y;
+          healthbars[i].w = 100;
+          healthbars[i].h = 5;
+
+
+          rect[i].w /= 3;
+          rect[i].h /= 3;
 
           // sets initial x-position of object
           rect[i].x = units[i].x;
@@ -174,7 +161,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, tex2, background, tex3, gun_screen, units, healthbars);
+            render(rend,tex,rect, tex2, background, tex3, gun_screen, healthbars,units);
         }
 
         // rectroy texture

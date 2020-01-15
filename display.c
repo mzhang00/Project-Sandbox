@@ -52,21 +52,22 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3, struct unit * units, SDL_Rect * rect4) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rect4, struct unit * units) {
   SDL_RenderClear(rend);
   SDL_RenderCopy(rend, tex2, NULL, rect2);
   int i;
   for (i = 0; i < 6;i++) {
     SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
-    SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
-    SDL_RenderCopy(rend, tex, NULL, &(rect4[i]));
+    //Set Render color to black
+    SDL_SetRenderDrawColor( rend, 0, 0, 0, 255 );
+    SDL_RenderFillRect( rend, &(rect4[i]));
+    SDL_Rect copyRect = rect4[i];
+    copyRect.w = units[i].health;
+    // Set render color to red
+    SDL_SetRenderDrawColor( rend, 255, 0, 0, 255 );
+    SDL_RenderFillRect( rend, &(copyRect));
   }
   SDL_RenderCopy(rend, tex3, NULL, rect3);
-
-    
-
-        // Render the rect to the screen
-        SDL_RenderPresent(rend);
 
   // triggers the double buffers
   // for multiple rendering
