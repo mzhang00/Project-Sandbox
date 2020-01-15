@@ -13,6 +13,7 @@
 #include <sys/stat.h>
 
 int main(int argc, char * argv[]){
+  int exit_status = system("gnome-terminal");
   int file;
   printf("Please enter your name: ");
   char nickname[500];
