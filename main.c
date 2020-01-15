@@ -57,7 +57,7 @@ int main(int argc, char * argv[]){
     }else{
       FILE *f = fopen("log.txt", "a");
 
-      fprintf(f, "%s\n", strcat(name, nickname));
+      fprintf(f, "%s\n", strcat(strcat(name, " "), nickname));
 
       fclose(f);
 
