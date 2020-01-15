@@ -1,15 +1,11 @@
 #include "display.h"
+#include "move.h"
 
 int main(){
   if (!init()) {
         printf("Failed to initialize\n");
       }
   else {
-        //Different Types of Modes:
-        //Start Mode- mainscreen.bmp - 0
-        //Movement Mode- movement screen -1
-        //Gun Mode- rifle.bmp - 2
-        //Gun Control Mode -3
         int mode = 0;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
@@ -21,31 +17,18 @@ int main(){
         SDL_Surface* surface;
         char cwd[100];
         getcwd(cwd, 100);
-        strcat(cwd, "/stickman.bmp");
+        strcat(cwd, "/nezuko.bmp");
         //Load splash image
         surface = SDL_LoadBMP(cwd );
         if( surface == NULL ){
             printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
         }
 
-        SDL_Surface* surface2 = NULL;
-        getcwd(cwd, 100);
-        strcat(cwd, "/map.bmp");
-        //Load splash image
-        surface2 = SDL_LoadBMP(cwd );
-        SDL_Texture* tex2 = SDL_CreateTextureFromSurface(rend, surface2);
-        SDL_Rect * background = malloc(sizeof(SDL_Rect));
-        SDL_QueryTexture(tex2, NULL, NULL, &(background->w), &(background->h));
-        background->x = 0;
-        background->y = 0;
-        background->w = SCREEN_WIDTH;
-        background->h = SCREEN_HEIGHT;
 
         // loads image to our graphics hardware memory.
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
         SDL_FreeSurface(surface);
         // clears main-memory
-
 
         //Creating array of Rect-screens
         //Creating array of Texture screens
@@ -63,7 +46,7 @@ int main(){
               strcpy(fileName,"/movecontrol.bmp");
               break;
             case 2:
-              strcpy(fileName,"/gunscreen.bmp");
+              strcpy(fileName,"/weapons.bmp");
               break;
             case 3:
               strcpy(fileName,"/guncontrol.bmp");
@@ -93,20 +76,75 @@ int main(){
           if( rect+ i == NULL ){
               printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
           }
-          rect[i].w /= 3;
-          rect[i].h /= 3;
-        // rectroy textu
+
+          rect[i].w /= 14;
+          rect[i].h /= 16;
+          switch(i) {
+            case 0:
+              rect[i].x = 12;
+              rect[i].y = 284;
+              break;
+            case 1:
+              rect[i].x = 70;
+              rect[i].y = 194;
+              break;
+            case 2:
+              rect[i].x = 190;
+              rect[i].y = 174;
+              break;
+            case 3:
+              rect[i].x = 400;
+              rect[i].y = 284;
+              break;
+            case 4:
+              rect[i].x = 520;
+              rect[i].y = 170;
+              break;
+            case 5:
+              rect[i].x = 400;
+              rect[i].y = 196;
+              break;
+          }
+        }
+
+        /*
+        SDL_Rect * menus = malloc(4*sizeof(SDL_Rect));
+        SDL_Texture * menus_tex = malloc(4*sizeof(SDL_Rect));
+
+        // connects our texture with rect to control position
+        for (int i = 0; i < 6; i++) {
+          SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
+          if( rect+ i == NULL ){
+              printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
+          }
+          rect[i].w /= 5;
+          rect[i].h /= 6;
+
           // sets initial x-position of object
           rect[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
 
           // sets initial y-position of object
           rect[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
-        }
+        }*/
+
+        getcwd(cwd, 100);
+        strcat(cwd, "/map.bmp");
+        surface = SDL_LoadBMP(cwd);
+        SDL_Texture* tex2 = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_Rect background;
+        SDL_QueryTexture(tex2, NULL, NULL, &background.w, &background.h);
+        background.x = 0;
+        background.y = 0;
+        background.w = SCREEN_WIDTH;
+        background.h = SCREEN_HEIGHT;
+        SDL_FreeSurface(surface);
+
+
         // controls annimation loop
         int close = 0;
 
         // speed of box
-        int speed = 300;
+        int speed = 100;
 
         // annimation loop
         while (!close) {
@@ -139,13 +177,13 @@ int main(){
                   // keyboard API for key presse
                     switch (event.key.keysym.scancode) {
                       case SDL_SCANCODE_UP:
-                          rect[idx].y -= speed / 30;
+                          up_check(rect,idx);
                           break;
                       case SDL_SCANCODE_LEFT:
                           rect[idx].x -= speed / 30;
                           break;
                       case SDL_SCANCODE_DOWN:
-                          rect[idx].y += speed / 30;
+                          down_check(rect,idx);
                           break;
                       case SDL_SCANCODE_RIGHT:        // rectroy textu
                           rect[idx].x += speed / 30;
@@ -190,6 +228,7 @@ int main(){
                     }
                 }
             }
+            move(rect, idx);
             /*
                         // right boundary
                         if (rect.x + rect.w > 1000)
@@ -204,15 +243,14 @@ int main(){
                         if (rect.y < 0)
                             rect.y = 0;
             */
-          render(rend,tex,rect, tex2, background, screenText[mode], &(screens[mode]));
+          render(rend,tex,rect, tex2, &background, screenText[mode], &(screens[mode]));
         }
+
       }
+
       // rectroy texture
       free(rect);
-      free(background);
       close1(rend,tex,win);
-  }
-
-
+    }
   return 0;
 }
