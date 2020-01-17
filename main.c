@@ -156,33 +156,35 @@ int main(){
                 break;
               }
               else if(event.type == SDL_KEYDOWN){
+                switch (event.key.keysym.scancode) {
+                  case SDL_SCANCODE_D:
+                    shift -= 10;
+                    for (int i = 0; i < 2; i++) {
+                      maps[i].x -= 10;
+                    }
+                    for (int i = 0; i < 4; i++) {
+                      screens[i].x -= 10;
+                    }
+                    for (int i = 0; i < 6; i++) {
+                      rect[i].x -= 10;
+                    }
+                    break;
+                  case SDL_SCANCODE_A:
+                    shift += 10;
+                    for (int i = 0; i < 2; i++) {
+                      maps[i].x += 10;
+                    }
+                    for (int i = 0; i < 4; i++) {
+                      screens[i].x += 10;
+                    }
+                    for (int i = 0; i < 6; i++) {
+                      rect[i].x += 10;
+                    }
+                    break;
+                }
                 switch(mode){
                   case 0:
                     switch (event.key.keysym.scancode) {
-                      case SDL_SCANCODE_D:
-                        shift = -10;
-                        for (int i = 0; i < 2; i++) {
-                          maps[i].x += shift;
-                        }
-                        for (int i = 0; i < 4; i++) {
-                          screens[i].x += shift;
-                        }
-                        for (int i = 0; i < 6; i++) {
-                          rect[i].x += shift;
-                        }
-                        break;
-                      case SDL_SCANCODE_A:
-                        shift = 10;
-                        for (int i = 0; i < 2; i++) {
-                          maps[i].x += shift;
-                        }
-                        for (int i = 0; i < 4; i++) {
-                          screens[i].x += shift;
-                        }
-                        for (int i = 0; i < 6; i++) {
-                          rect[i].x += shift;
-                        }
-                        break;
                       case SDL_SCANCODE_1:
                         mode = 1;
                         break;
@@ -255,11 +257,16 @@ int main(){
                   }
                 }
                 move(rect, idx, screen);
-
-                if (t != time(NULL)) {
+                if (rect[idx].x >= maps[1].x + 1) {
+                  screen = 1;
+                }
+                if (rect[idx].x <= maps[1].x +1) {
+                  screen = 0;
+                }
+                /*if (t != time(NULL)) {
                   t = time(NULL);
                   printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
-                }
+                }*/
 /*
             // right boundary
             if (rect.x + rect.w > 1000)
