@@ -16,7 +16,7 @@ int main(){
         // creates a renderer to render our images
         SDL_Renderer* rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
         int idx = 0;
-        int screen = 1;
+        int screen = 0;
         SDL_Surface* surface;
         char cwd[100];
         getcwd(cwd, 100);
@@ -81,8 +81,8 @@ int main(){
           rect[i].h /= 16;
           switch(i) {
             case 0:
-              rect[i].x = 250;
-              rect[i].y = 143;
+              rect[i].x = 12;
+              rect[i].y = 284;
               break;
             case 1:
               rect[i].x = 70;
@@ -128,7 +128,7 @@ int main(){
         }*/
 
         getcwd(cwd, 100);
-        strcat(cwd, "/map2.bmp");
+        strcat(cwd, "/map1.bmp");
         surface = SDL_LoadBMP(cwd);
         SDL_Texture* tex2 = SDL_CreateTextureFromSurface(rend, surface);
         SDL_Rect background;
