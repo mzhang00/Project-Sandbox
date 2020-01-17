@@ -1,7 +1,12 @@
 #include "move.h"
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+
+extern int shift;
 
 void move(SDL_Rect * rec, int num, int scr) {
-  int x = rec[num].x;
+  int x = rec[num].x - shift;
+  if (scr == 1) x -= SCREEN_WIDTH;
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){
@@ -111,7 +116,8 @@ void move(SDL_Rect * rec, int num, int scr) {
   }
 }
 void up_check(SDL_Rect * rec, int num, int scr) {
-  int x = rec[num].x;
+  int x = rec[num].x - shift;
+  if (scr == 1) x -= SCREEN_WIDTH;
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){
@@ -198,7 +204,8 @@ void up_check(SDL_Rect * rec, int num, int scr) {
 }
 
 void down_check(SDL_Rect * rec, int num, int scr) {
-  int x = rec[num].x;
+  int x = rec[num].x - shift;
+  if (scr == 1) x -= SCREEN_WIDTH;
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){

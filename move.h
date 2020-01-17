@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
+extern int shift;
 
 void move(SDL_Rect * rec, int num, int scr);
 void up_check(SDL_Rect * rec, int num, int scr);
