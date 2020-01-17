@@ -1,12 +1,14 @@
 #include "display.h"
 #include "move.h"
+#include <time.h>
 
 int main(){
   if (!init()) {
         printf("Failed to initialize\n");
       }
   else {
-        int mode = 0;
+    int t = time(NULL);
+        int mode = 1;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -14,6 +16,7 @@ int main(){
         // creates a renderer to render our images
         SDL_Renderer* rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
         int idx = 0;
+        int screen = 1;
         SDL_Surface* surface;
         char cwd[100];
         getcwd(cwd, 100);
@@ -78,8 +81,8 @@ int main(){
           rect[i].h /= 16;
           switch(i) {
             case 0:
-              rect[i].x = 12;
-              rect[i].y = 284;
+              rect[i].x = 250;
+              rect[i].y = 143;
               break;
             case 1:
               rect[i].x = 70;
@@ -174,13 +177,15 @@ int main(){
                   // keyboard API for key presse
                     switch (event.key.keysym.scancode) {
                       case SDL_SCANCODE_UP:
-                          up_check(rect,idx);
+                          up_check(rect,idx,screen);
+                          //rect[idx].y += speed / 30;
                           break;
                       case SDL_SCANCODE_LEFT:
                           rect[idx].x -= speed / 30;
                           break;
                       case SDL_SCANCODE_DOWN:
-                          down_check(rect,idx);
+                          down_check(rect,idx,screen);
+                          //rect[idx].y -= speed / 30;
                           break;
                       case SDL_SCANCODE_RIGHT:        // rectroy textu
                           rect[idx].x += speed / 30;
@@ -224,7 +229,13 @@ int main(){
                     }
                   }
                 }
-                move(rect, idx);
+                move(rect, idx, screen);
+
+                if (t != time(NULL)) {
+                  t = time(NULL);
+                  printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
+                }
+                //SDL_Delay(1000);
 /*
             // right boundary
             if (rect.x + rect.w > 1000)

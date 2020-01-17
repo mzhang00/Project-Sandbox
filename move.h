@@ -5,8 +5,8 @@
 #include <stdio.h>
 
 
-void move(SDL_Rect * rec, int num);
-void up_check(SDL_Rect * rec, int num);
-void down_check(SDL_Rect * rec, int num);
+void move(SDL_Rect * rec, int num, int scr);
+void up_check(SDL_Rect * rec, int num, int scr);
+void down_check(SDL_Rect * rec, int num, int scr);
 
 #endif
