@@ -1,22 +1,18 @@
 #include "move.h"
-<<<<<<< HEAD
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
+
 struct rect{
   int x;
   int y;
   int w;
   int l;
 };
-void move(SDL_Rect * rec, int num) {
-  int x = rec[num].x;
-=======
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
 
 
 void move(SDL_Rect * rec, int num, int scr) {
   int x = rec[num].x - shift;
   if (scr == 1) x -= SCREEN_WIDTH-3;
->>>>>>> 7f6b3c760df28eff9e5eff85dbd8a776d4f31338
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){
