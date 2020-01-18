@@ -1,6 +1,6 @@
 #include "display.h"
 
-
+int shift = 0;
 
 int init()
 {
@@ -52,9 +52,11 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect,SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3) {
   SDL_RenderClear(rend);
-  SDL_RenderCopy(rend, tex2, NULL, rect2);
+  for (int i = 0; i < 2;i++) {
+    SDL_RenderCopy(rend, texts[i], NULL, &(rects[i]));
+  }
   for (int i = 0; i < 6;i++) {
     SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
   }

@@ -22,10 +22,11 @@ int init();
 //Loads media
 int loadMedia();
 
+
 //Frees media and shuts down SDL
 void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect,SDL_Texture * tex2, SDL_Rect *rect2, SDL_Texture * tex3, SDL_Rect * rect3);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3);
 void clear(SDL_Renderer * renderer);
 
 #endif
