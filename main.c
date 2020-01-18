@@ -160,7 +160,7 @@ int main(){
               else if(event.type == SDL_KEYDOWN){
                 switch (event.key.keysym.scancode) {
                   case SDL_SCANCODE_D:
-                    if (shift <= 0 && shift >= -SCREEN_WIDTH){
+                    if (shift != -SCREEN_WIDTH){
                       shift -= 10;
                       for (int i = 0; i < 2; i++) {
                         maps[i].x -= 10;
@@ -171,7 +171,7 @@ int main(){
                     }
                     break;
                   case SDL_SCANCODE_A:
-                    if (shift <= 0 && shift >= -SCREEN_WIDTH){
+                    if (shift != 0){
                       shift += 10;
                       for (int i = 0; i < 2; i++) {
                         maps[i].x += 10;
