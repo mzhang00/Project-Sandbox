@@ -59,8 +59,10 @@ int main(){
          surface = SDL_LoadBMP(cwd);
          screenText[i] = SDL_CreateTextureFromSurface(rend, surface);
          SDL_QueryTexture(screenText[i], NULL, NULL, &(screens[i].w), &(screens[i].h));
-         screens[i].x = 110;
-         screens[i].y = 380;
+         screens[i].x = 0;
+         screens[i].y = 372;
+         screens[i].w = SCREEN_WIDTH;
+         screens[i].h = 115;
          if( surface == NULL ){
              printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
          }
@@ -158,27 +160,25 @@ int main(){
               else if(event.type == SDL_KEYDOWN){
                 switch (event.key.keysym.scancode) {
                   case SDL_SCANCODE_D:
-                    shift -= 10;
-                    for (int i = 0; i < 2; i++) {
-                      maps[i].x -= 10;
-                    }
-                    for (int i = 0; i < 4; i++) {
-                      screens[i].x -= 10;
-                    }
-                    for (int i = 0; i < 6; i++) {
-                      rect[i].x -= 10;
+                    if (shift <= 0 && shift >= -SCREEN_WIDTH){
+                      shift -= 10;
+                      for (int i = 0; i < 2; i++) {
+                        maps[i].x -= 10;
+                      }
+                      for (int i = 0; i < 6; i++) {
+                        rect[i].x -= 10;
+                      }
                     }
                     break;
                   case SDL_SCANCODE_A:
-                    shift += 10;
-                    for (int i = 0; i < 2; i++) {
-                      maps[i].x += 10;
-                    }
-                    for (int i = 0; i < 4; i++) {
-                      screens[i].x += 10;
-                    }
-                    for (int i = 0; i < 6; i++) {
-                      rect[i].x += 10;
+                    if (shift <= 0 && shift >= -SCREEN_WIDTH){
+                      shift += 10;
+                      for (int i = 0; i < 2; i++) {
+                        maps[i].x += 10;
+                      }
+                      for (int i = 0; i < 6; i++) {
+                        rect[i].x += 10;
+                      }
                     }
                     break;
                 }

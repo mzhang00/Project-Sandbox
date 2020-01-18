@@ -5,7 +5,7 @@
 
 void move(SDL_Rect * rec, int num, int scr) {
   int x = rec[num].x - shift;
-  if (scr == 1) x -= SCREEN_WIDTH;
+  if (scr == 1) x -= SCREEN_WIDTH-3;
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){
@@ -60,14 +60,14 @@ void move(SDL_Rect * rec, int num, int scr) {
       else if (y != 295) rec[num].y = 170;
     }
     else if (x >= 579 && x <= 644){
-      if (y == 170 || y == 295 || (y == 175 && x <= 603)) rec[num].y = 284;
-      else if (y != 284) rec[num].y = 175;
+      if (y == 170 || y == 295 || (y == 175 && x <= 600)) rec[num].y = 284;
+      else if (y < 281) rec[num].y = 175;
     }
   }
   else {
     if (x >= -21 && x <= 33){
-      if (y == 263 || (y == 176 && x >= 12)) rec[num].y = 281;
-      else if (y != 281 && x <= 12) rec[num].y = 176;
+      if (y == 263 || (y == 175 && x >= 12)) rec[num].y = 281;
+      else if (y < 281 && x <= 12) rec[num].y = 175;
     }
     else if (x >= 33 && x <= 57){
       if (y == 242) rec[num].y = 263;
@@ -116,7 +116,7 @@ void move(SDL_Rect * rec, int num, int scr) {
 }
 void up_check(SDL_Rect * rec, int num, int scr) {
   int x = rec[num].x - shift;
-  if (scr == 1) x -= SCREEN_WIDTH;
+  if (scr == 1) x -= SCREEN_WIDTH-3;
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){
@@ -160,12 +160,12 @@ void up_check(SDL_Rect * rec, int num, int scr) {
       if (y == 295) rec[num].y = 170;
     }
     else if (x >= 579 && x <= 644){
-      if (y == 284 && x >= 603) rec[num].y = 175;
+      if (y == 284 && x >= 600) rec[num].y = 175;
     }
   }
   else {
     if (x >= -21 && x <= 33){
-      if (y == 281 && x <= 12) rec[num].y = 176;
+      if (y == 281 && x <= 12) rec[num].y = 175;
     }
     else if (x >= 33 && x <= 57){
       if (y == 281) rec[num].y = 263;
@@ -204,7 +204,7 @@ void up_check(SDL_Rect * rec, int num, int scr) {
 
 void down_check(SDL_Rect * rec, int num, int scr) {
   int x = rec[num].x - shift;
-  if (scr == 1) x -= SCREEN_WIDTH;
+  if (scr == 1) x -= SCREEN_WIDTH-3;
   int y = rec[num].y;
   if (scr == 0) {
     if (x >= -21 && x <= 15){
@@ -248,12 +248,12 @@ void down_check(SDL_Rect * rec, int num, int scr) {
       if (y == 170) rec[num].y = 295;
     }
     else if (x >= 579 && x <= 643){
-      if (y == 175 && x >= 603) rec[num].y = 284;
+      if (y == 175 && x >= 600) rec[num].y = 284;
     }
   }
   else {
     if (x >= -21 && x <= 33){
-      if (y == 176 && x <= 12) rec[num].y = 281;
+      if (y == 175 && x <= 12) rec[num].y = 281;
     }
     else if (x >= 33 && x <= 57){
       if (y == 263) rec[num].y = 281;
