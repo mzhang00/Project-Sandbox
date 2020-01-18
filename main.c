@@ -125,7 +125,7 @@ int main(){
         }*/
 
         getcwd(cwd, 100);
-        strcat(cwd, "/map2.bmp");
+        strcat(cwd, "/map.bmp");
         surface = SDL_LoadBMP(cwd);
         SDL_Texture* tex2 = SDL_CreateTextureFromSurface(rend, surface);
         SDL_Rect background;
