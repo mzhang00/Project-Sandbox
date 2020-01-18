@@ -140,7 +140,6 @@ int main(){
           }
           SDL_FreeSurface(surface);
         }
-
         // controls animation loop
         int close = 0;
 
