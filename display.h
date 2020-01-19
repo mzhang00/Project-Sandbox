@@ -10,12 +10,15 @@
 #include <unistd.h>
 
 struct unit {
-  int id;
+  int number;
   int health;
   int weapon_id;
-  int distance;
-  SDL_Rect * rects;
-  SDL_Texture * textures;
+  int moves_left;
+  int x;
+  int y;
+  int team;
+  SDL_Rect unit_rect;
+  SDL_Texture* unit_tex;
 };
 int init();
 
@@ -26,7 +29,7 @@ int loadMedia();
 //Frees media and shuts down SDL
 void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rect4, struct unit * units);
 void clear(SDL_Renderer * renderer);
 
 #endif

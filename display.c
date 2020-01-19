@@ -50,13 +50,21 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rect4, struct unit * units) {
   SDL_RenderClear(rend);
   for (int i = 0; i < 2;i++) {
     SDL_RenderCopy(rend, texts[i], NULL, &(rects[i]));
   }
   for (int i = 0; i < 6;i++) {
     SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
+    //Set Render color to black
+    SDL_SetRenderDrawColor( rend, 0, 0, 0, 255 );
+    SDL_RenderFillRect( rend, &(rect4[i]));
+    SDL_Rect copyRect = rect4[i];
+    copyRect.w = units[i].health;
+    // Set render color to red
+    SDL_SetRenderDrawColor( rend, 255, 0, 0, 255 );
+    SDL_RenderFillRect( rend, &(copyRect));
   }
   SDL_RenderCopy(rend, tex3, NULL, rect3);
   // triggers the double buffers
