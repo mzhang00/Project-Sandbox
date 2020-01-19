@@ -290,6 +290,8 @@ int main(){
                   }
                 }
                 move(rect, idx, screen);
+                move(healthbars, idx, screen); // make health bars move with player
+                
                 if (rect[idx].x >= maps[1].x + 1) {
                   screen = 1;
                 }
@@ -314,7 +316,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units);
+            render(rend, tex, rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units);
         }
       }
         free(rect);
