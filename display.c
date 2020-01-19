@@ -1,7 +1,5 @@
 #include "display.h"
 
-int shift = 0;
-
 int init()
 {
     //Initialization flag
