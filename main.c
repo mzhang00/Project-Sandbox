@@ -82,28 +82,28 @@ int main(){
           rect[i].h /= 16;
           switch(i) {
             case 0:
-              rect[i].x = 12;
+              rect[i].x = 417;
               rect[i].y = 284;
               break;
             case 1:
-              rect[i].x = 70;
-              rect[i].y = 194;
+              rect[i].x = 113+SCREEN_WIDTH;
+              rect[i].y = 203;
               break;
             case 2:
-              rect[i].x = 190;
+              rect[i].x = 291;
               rect[i].y = 174;
               break;
             case 3:
-              rect[i].x = 400;
-              rect[i].y = 284;
+              rect[i].x = 245+SCREEN_WIDTH;
+              rect[i].y = 281;
               break;
             case 4:
-              rect[i].x = 520;
-              rect[i].y = 170;
+              rect[i].x = 150;
+              rect[i].y = 234;
               break;
             case 5:
-              rect[i].x = 400;
-              rect[i].y = 196;
+              rect[i].x = 332+SCREEN_WIDTH;
+              rect[i].y = 167;
               break;
           }
         }
@@ -188,12 +188,7 @@ int main(){
                         mode = 1;
                         break;
                       case SDL_SCANCODE_2:
-                        if (idx < 5) {
-                          idx++;
-                        }
-                        else {
-                          idx = 0;
-                        }
+                        mode = 2;
                         break;
                     }
                     break;
@@ -201,19 +196,17 @@ int main(){
                   // keyboard API for key press
                     switch (event.key.keysym.scancode) {
                       case SDL_SCANCODE_UP:
-                          up_check(rect,idx,screen);
-                          //rect[idx].y += speed / 30;
-                          break;
+                        up_check(rect,idx,screen);
+                        break;
                       case SDL_SCANCODE_LEFT:
-                          rect[idx].x -= speed / 30;
-                          break;
+                        rect[idx].x -= speed / 30;
+                        break;
                       case SDL_SCANCODE_DOWN:
-                          down_check(rect,idx,screen);
-                          //rect[idx].y -= speed / 30;
-                          break;
+                        down_check(rect,idx,screen);
+                        break;
                       case SDL_SCANCODE_RIGHT:
-                          rect[idx].x += speed / 30;
-                          break;
+                        rect[idx].x += speed / 30;
+                        break;
                       case SDL_SCANCODE_1:
                         mode = 2;
                         break;
@@ -237,6 +230,7 @@ int main(){
                         else {
                           idx = 0;
                         }
+                        mode = 0;
                         break;
                      }
                   break;
@@ -249,8 +243,12 @@ int main(){
                       else {
                         idx = 0;
                       }
+                      mode = 0;
                       break;
                     }
+                    case SDL_SCANCODE_X:
+                      mode = 2;
+                      break;
                     break;
 
                   }
@@ -262,10 +260,10 @@ int main(){
                 if (rect[idx].x <= maps[1].x +1) {
                   screen = 0;
                 }
-                /*if (t != time(NULL)) {
+                if (t != time(NULL)) {
                   t = time(NULL);
                   printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
-                }*/
+                }
 /*
             // right boundary
             if (rect.x + rect.w > 1000)
