@@ -157,8 +157,19 @@ int main(){
           units[i].unit_tex = tex;
 
           // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-          healthbars[i].x = rect[i].x - 30;
-          healthbars[i].y = rect[i].y - 10;
+          int rectx = rect[i].x - 30;
+          int recty = rect[i].y - 10;
+          if ((rectx <= 0)) {
+            rectx = 1;
+          } else if (recty <= 0) {
+            recty = 1;
+          } else if (rectx >= 540) {
+            rectx = 539;
+          } else if(recty >= 540) {
+            recty = 539;
+          }
+          healthbars[i].x = rectx;
+          healthbars[i].y = recty;
           healthbars[i].w = 100;
           healthbars[i].h = 5;
         }
