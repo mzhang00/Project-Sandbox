@@ -2,7 +2,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-
+int shift = 0;
 void move(SDL_Rect * rec, int num, int scr) {
   int x = rec[num].x - shift;
   if (scr == 1) x -= SCREEN_WIDTH-3;
