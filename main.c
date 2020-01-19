@@ -26,7 +26,18 @@ int main(){
         if( surface == NULL ){
             printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
         }
-
+        //Displaying Gun
+        getcwd(cwd, 100);
+        strcat(cwd, "/rifle2.bmp");
+        surface = SDL_LoadBMP(cwd);
+        SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_Rect rifle;
+        SDL_QueryTexture(rifleText, NULL, NULL, &rifle.w, &rifle.h);
+        SDL_FreeSurface(surface);
+        rifle.x = 0;
+        rifle.y = 0;
+        rifle.w = SCREEN_WIDTH;
+        rifle.h = SCREEN_HEIGHT/2;
 
         // loads image to our graphics hardware memory.
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
@@ -140,18 +151,7 @@ int main(){
           }
           SDL_FreeSurface(surface);
         }
-        //Displaying Gun
-        getcwd(cwd, 100);
-        strcat(cwd, "/rifle2.bmp");
-        surface = SDL_LoadBMP(cwd);
-        SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
-        SDL_Rect rifle;
-        SDL_QueryTexture(rifleText, NULL, NULL, &(rifle.w), &(rifle.h));
-        SDL_FreeSurface(surface);
-        rifle.x = 0;
-        rifle.y = 0;
-        rifle.w = SCREEN_WIDTH;
-        rifle.h = SCREEN_HEIGHT/2;
+
         // controls animation loop
         int close = 0;
 

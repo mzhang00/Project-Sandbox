@@ -59,8 +59,10 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
     SDL_RenderCopy(rend, tex, NULL, &(rect[i]));
   }
   SDL_RenderCopy(rend, tex3, NULL, rect3);
+
   //Displays rifle
   SDL_RenderCopy(rend,rifleText,NULL,rifle);
+
   // triggers the double buffers
   // for multiple rendering
   SDL_RenderPresent(rend);
