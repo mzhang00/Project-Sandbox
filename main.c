@@ -140,6 +140,18 @@ int main(){
           }
           SDL_FreeSurface(surface);
         }
+        //Displaying Gun
+        getcwd(cwd, 100);
+        strcat(cwd, "/rifle2.bmp");
+        surface = SDL_LoadBMP(cwd);
+        SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_Rect rifle;
+        SDL_QueryTexture(rifleText, NULL, NULL, &(rifle.w), &(rifle.h));
+        SDL_FreeSurface(surface);
+        rifle.x = 0;
+        rifle.y = 0;
+        rifle.w = SCREEN_WIDTH;
+        rifle.h = SCREEN_HEIGHT/2;
         // controls animation loop
         int close = 0;
 
@@ -280,7 +292,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]));
+            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&rifle, rifleText);
         }
       }
         free(rect);

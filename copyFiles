@@ -1,0 +1,8 @@
+-main.c
+
+
+-render display.h
+
+
+-render display.c
+-SDL_RenderCopy(rend,rifleText,NULL,rifle);
