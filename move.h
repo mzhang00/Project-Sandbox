@@ -6,8 +6,18 @@
 
 extern int shift;
 
+struct rect{
+  int x;
+  int y;
+  int w;
+  int l;
+};
+
 void move(SDL_Rect * rec, int num, int scr);
 void up_check(SDL_Rect * rec, int num, int scr);
 void down_check(SDL_Rect * rec, int num, int scr);
+void initializeRect(struct rect * recty, int x, int y, int w, int l);
+float calcCenter(int *cX, int *cY, struct rect recty);
+int whereRectComapredToRect(struct rect rect1, struct rect rect2);
 
 #endif
