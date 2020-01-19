@@ -157,12 +157,12 @@ int main(){
           units[i].unit_tex = tex;
 
           // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-          healthbars[i].x = units[i].x;
-          healthbars[i].y = units[i].y;
+          healthbars[i].x = rect[i].x;
+          healthbars[i].y = rect[i].y;
           healthbars[i].w = 100;
           healthbars[i].h = 5;
         }
-        
+
         // controls animation loop
         int close = 0;
 
