@@ -68,45 +68,7 @@ int main(){
          }
          SDL_FreeSurface(surface);
        }
-        // let us control our image position
-        // so that we can move it with our keyboard.
-        SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
-
-        // connects our texture with rect to control position
-        for (int i = 0; i < 6; i++) {
-          SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
-          if( rect+ i == NULL ){
-              printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
-          }
-          rect[i].w /= 14;
-          rect[i].h /= 16;
-          switch(i) {
-            case 0:
-              rect[i].x = 417;
-              rect[i].y = 284;
-              break;
-            case 1:
-              rect[i].x = 113+SCREEN_WIDTH;
-              rect[i].y = 203;
-              break;
-            case 2:
-              rect[i].x = 291;
-              rect[i].y = 174;
-              break;
-            case 3:
-              rect[i].x = 245+SCREEN_WIDTH;
-              rect[i].y = 281;
-              break;
-            case 4:
-              rect[i].x = 150;
-              rect[i].y = 234;
-              break;
-            case 5:
-              rect[i].x = 332+SCREEN_WIDTH;
-              rect[i].y = 167;
-              break;
-          }
-        }
+        
 
         SDL_Rect * maps = malloc(2*sizeof(SDL_Rect));
         SDL_Texture ** mapsText = malloc(2*sizeof(SDL_Texture *));
@@ -140,6 +102,78 @@ int main(){
           }
           SDL_FreeSurface(surface);
         }
+
+        // let us control our image position
+        // so that we can move it with our keyboard.
+        SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
+        SDL_Rect * healthbars = malloc(6*sizeof(SDL_Rect));
+        struct unit * units = malloc(6*sizeof(struct unit));
+        // connects our texture with rect to control position
+        srand(time(0));
+        for (int i = 0; i < 6; i++) {
+          SDL_QueryTexture(tex, NULL, NULL, &(rect[i].w), &(rect[i].h));
+          if( rect+ i == NULL ){
+              printf( "Unable to query texture %d! SDL Error: %s\n", i, SDL_GetError() );
+          }
+
+          rect[i].w /= 14;
+          rect[i].h /= 16;
+
+          switch(i) {
+            case 0:
+              rect[i].x = 417;
+              rect[i].y = 284;
+              break;
+            case 1:
+              rect[i].x = 113+SCREEN_WIDTH;
+              rect[i].y = 203;
+              break;
+            case 2:
+              rect[i].x = 291;
+              rect[i].y = 174;
+              break;
+            case 3:
+              rect[i].x = 245+SCREEN_WIDTH;
+              rect[i].y = 281;
+              break;
+            case 4:
+              rect[i].x = 150;
+              rect[i].y = 234;
+              break;
+            case 5:
+              rect[i].x = 332+SCREEN_WIDTH;
+              rect[i].y = 167;
+              break;
+          }
+
+          units[i].number = 0;
+          units[i].health = rand()%75;
+          units[i].weapon_id = 0;
+          units[i].moves_left = 10;
+          units[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
+          units[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
+          units[i].team = 0;
+          units[i].unit_rect = rect[i];
+          units[i].unit_tex = tex;
+
+          // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
+          int rectx = rect[i].x - 30;
+          int recty = rect[i].y - 10;
+          if ((rectx <= 0)) {
+            rectx = 1;
+          } else if (recty <= 0) {
+            recty = 1;
+          } else if (rectx >= 540) {
+            rectx = 539;
+          } else if(recty >= 540) {
+            recty = 539;
+          }
+          healthbars[i].x = rectx;
+          healthbars[i].y = recty;
+          healthbars[i].w = 100;
+          healthbars[i].h = 5;
+        }
+
         // controls animation loop
         int close = 0;
 
@@ -254,6 +288,8 @@ int main(){
                   }
                 }
                 move(rect, idx, screen);
+                move(healthbars, idx, screen); // make health bars move with player
+                
                 if (rect[idx].x >= maps[1].x + 1) {
                   screen = 1;
                 }
@@ -278,7 +314,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]));
+            render(rend, tex, rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units);
         }
       }
         free(rect);
