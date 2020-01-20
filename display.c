@@ -50,7 +50,7 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3,SDL_Rect * rifle, SDL_Texture *rifleText) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3,SDL_Rect * rifle, SDL_Texture *rifleText, int rifleOn) {
   SDL_RenderClear(rend);
   for (int i = 0; i < 2;i++) {
     SDL_RenderCopy(rend, texts[i], NULL, &(rects[i]));
@@ -61,7 +61,8 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
   SDL_RenderCopy(rend, tex3, NULL, rect3);
 
   //Displays rifle
-  SDL_RenderCopy(rend,rifleText,NULL,rifle);
+  if(rifleOn)
+    SDL_RenderCopy(rend,rifleText,NULL,rifle);
 
   // triggers the double buffers
   // for multiple rendering

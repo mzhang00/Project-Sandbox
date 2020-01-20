@@ -26,7 +26,7 @@ int loadMedia();
 //Frees media and shuts down SDL
 void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rifle, SDL_Texture *rifleText);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rifle, SDL_Texture *rifleText, int rifleOn);
 void clear(SDL_Renderer * renderer);
 
 #endif

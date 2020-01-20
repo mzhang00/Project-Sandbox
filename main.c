@@ -7,8 +7,9 @@ int main(){
         printf("Failed to initialize\n");
       }
   else {
-    int t = time(NULL);
+        int t = time(NULL);
         int mode = 0;
+        int rifleOn = 0;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -77,8 +78,8 @@ int main(){
        SDL_FreeSurface(surface);
        rifle.x = 0;
        rifle.y = 0;
-       rifle.w = SCREEN_WIDTH;
-       rifle.h = SCREEN_HEIGHT/2;
+       rifle.w = 30;
+       rifle.h = 10;
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
@@ -238,6 +239,9 @@ int main(){
                         break;
                       case SDL_SCANCODE_2:
                         mode = 3;
+                        rifle.x = rect[idx].x;
+                        rifle.y = rect[idx].y;
+                        rifleOn = 1;
                         break;
                       case SDL_SCANCODE_3:
                         //boot
@@ -256,12 +260,16 @@ int main(){
                   switch (event.key.keysym.scancode) {
                     case SDL_SCANCODE_SPACE:
                       if (idx < 5) {
-                           idx++;
+                          idx++;
                       }
                       else {
                         idx = 0;
                       }
                       break;
+                    case SDL_SCANCODE_X:
+                        rifleOn = 0;
+                        mode = 2;
+                        break;
                     }
                     break;
 
@@ -292,7 +300,7 @@ int main(){
             if (rect.y < 0)
                 rect.y = 0;
 */
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&rifle, rifleText);
+            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&rifle, rifleText, rifleOn);
         }
       }
         free(rect);
