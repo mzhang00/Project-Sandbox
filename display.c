@@ -66,7 +66,7 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
     SDL_Point center;
     center.x = rifle->x;
     center.y = rifle->y;
-    SDL_RenderCopyEx(rend,rifleText,NULL,rifle,45.0,&center,flip);
+    SDL_RenderCopyEx(rend,rifleText,NULL,rifle,-45.0,&center,flip);
   }
 
 
