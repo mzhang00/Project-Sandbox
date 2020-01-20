@@ -9,7 +9,7 @@ int main(){
   else {
         int t = time(NULL);
         int mode = 0;
-        int rifleOn;
+        struct rifleGun rifle;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -73,13 +73,17 @@ int main(){
        strcat(cwd, "/rifle2.bmp");
        surface = SDL_LoadBMP(cwd);
        SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
-       SDL_Rect rifle;
-       SDL_QueryTexture(rifleText, NULL, NULL, &rifle.w, &rifle.h);
+       SDL_Rect displayedRifle;
+       SDL_QueryTexture(rifleText, NULL, NULL, &displayedRifle.w, &displayedRifle.h);
        SDL_FreeSurface(surface);
-       rifle.x = 0;
-       rifle.y = 0;
-       rifle.w = 300;
-       rifle.h = 100;
+       displayedRifle.x = 0;
+       displayedRifle.y = 0;
+       displayedRifle.w = 300;
+       displayedRifle.h = 100;
+       calculateCenter(&rifle,displayedRifle);
+       rifle.angle = 0;
+       rifle.rifleMode = 0;
+
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
@@ -239,9 +243,9 @@ int main(){
                         break;
                       case SDL_SCANCODE_2:
                         mode = 3;
-                        rifle.x = rect[idx].x;
-                        rifle.y = rect[idx].y;
-                        rifleOn = 1;
+                        displayedRifle.x = rect[idx].x;
+                        displayedRifle.y = rect[idx].y;
+                        rifle.rifleMode = 1;
                         break;
                       case SDL_SCANCODE_3:
                         //boot
@@ -267,7 +271,7 @@ int main(){
                         }
                         break;
                       case SDL_SCANCODE_X:
-                          rifleOn = 0;
+                          rifle.rifleMode = 0;
                           mode = 2;
                           break;
                     }
@@ -281,7 +285,7 @@ int main(){
               screen = 0;
             }
 
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&rifle, rifleText, rifleOn);
+            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&displayedRifle, rifleText, rifle);
         }
       }
       free(rect);

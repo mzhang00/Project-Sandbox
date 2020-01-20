@@ -17,6 +17,13 @@ struct unit {
   SDL_Rect * rects;
   SDL_Texture * textures;
 };
+
+struct rifleGun {
+  SDL_Point center;
+  double angle;
+  int rifleMode;
+};
+
 int init();
 
 //Loads media
@@ -26,7 +33,7 @@ int loadMedia();
 //Frees media and shuts down SDL
 void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rifle, SDL_Texture *rifleText, int rifleOn);
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * displayedRifle, SDL_Texture *rifleText, struct rifleGun rifle);
 void clear(SDL_Renderer * renderer);
-
+void calculateCenter(struct rifleGun * rifle, SDL_Rect displayedRifle);
 #endif

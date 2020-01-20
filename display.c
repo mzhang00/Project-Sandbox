@@ -50,7 +50,7 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3,SDL_Rect * rifle, SDL_Texture *rifleText, int rifleOn) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3,SDL_Rect * displayedRifle, SDL_Texture *rifleText, struct rifleGun rifle) {
   SDL_RenderClear(rend);
   for (int i = 0; i < 2;i++) {
     SDL_RenderCopy(rend, texts[i], NULL, &(rects[i]));
@@ -61,12 +61,9 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
   SDL_RenderCopy(rend, tex3, NULL, rect3);
 
   //Displays rifle
-  if(rifleOn){
+  if(rifle.rifleMode){
     SDL_RendererFlip flip = SDL_FLIP_NONE;
-    SDL_Point center;
-    center.x = rifle->x;
-    center.y = rifle->y;
-    SDL_RenderCopyEx(rend,rifleText,NULL,rifle,-45.0,&center,flip);
+    SDL_RenderCopyEx(rend,rifleText,NULL,displayedRifle,rifle.angle,&(rifle.center),flip);
   }
 
 
@@ -76,4 +73,10 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
 
   // calculates to 60 fps
   SDL_Delay(1000 / 60);
+}
+void calculateCenter(struct rifleGun * rifle, SDL_Rect displayedRifle){
+  int finalX = displayedRifle.x+displayedRifle.w/2;
+  int finalY = displayedRifle.y+displayedRifle.h/2;
+  rifle->center.x =finalX;
+  rifle->center.y =finalY;
 }
