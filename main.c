@@ -281,14 +281,14 @@ int main(){
                         if(rifle.angle<45)
                           rifle.angle-=0.1;
                       case SDL_SCANCODE_LEFT:
-                        if(flip == SDL_FLIP_NONE){
-                          flip = SDL_FLIP_VERTICAL;
-                          angle = 0;
+                        if(rifle.flip == SDL_FLIP_NONE){
+                          rifle.flip = SDL_FLIP_VERTICAL;
+                          rifle.angle = 0;
                         }
                       case SDL_SCANCODE_RIGHT:
-                        if(flip != SDL_FLIP_NONE){
-                          flip = SDL_FLIP_NONE;
-                          angle = 0;
+                        if(rifle.flip != SDL_FLIP_NONE){
+                          rifle.flip = SDL_FLIP_NONE;
+                          rifle.angle = 0;
                         }
                     }
                 }

@@ -388,3 +388,6 @@ float calcCenter(int *cX, int *cY, struct rect recty){
   *cX = recty.x+recty.w/2;
   *cY = recty.y+recty.l/2;
 }
+int detectBulletIntersectRect(int a, int b, float angle, SDL_Rect recty){
+  
+}
