@@ -264,6 +264,14 @@ int main(){
                   case 3:
                     switch (event.key.keysym.scancode) {
                       case SDL_SCANCODE_SPACE:
+                        int j;
+                        for (j=0;j<6;j++){
+                          if(j==idx)
+                            continue;
+                          if(detectBulletIntersectRect(rifle,rect[j])){
+                            printf("HELLO");
+                          }
+                        }
                         if (idx < 5) {
                             idx++;
                         }

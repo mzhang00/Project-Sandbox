@@ -388,6 +388,25 @@ float calcCenter(int *cX, int *cY, struct rect recty){
   *cX = recty.x+recty.w/2;
   *cY = recty.y+recty.l/2;
 }
-int detectBulletIntersectRect(int a, int b, float angle, SDL_Rect recty){
-  
+int detectBulletIntersectRect(struct rifleGun rifle, SDL_Rect recty){
+  if (rifle.flip == SDL_FLIP_NONE){
+    if(rifle.x>recty.x){
+      return 0;
+    }
+    int y = rifle.x+(recty.x-rifle.y)/sin(-1 * rifle.angle);
+    if (y>recty.y && y<rect.y+recty.h){
+      return 1
+    }
+    return 0;
+  }
+  else{
+    if(rifle.x<recty.x){
+      return 0;
+    }
+    int y = rifle.x+(recty.x+recty.w-rifle.y)/sin(-1* rifle.angle);
+    if (y>recty.y && y<rect.y+recty.h){
+      return 1
+    }
+    return 0;
+  }
 }
