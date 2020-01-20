@@ -274,6 +274,13 @@ int main(){
                           rifle.rifleMode = 0;
                           mode = 2;
                           break;
+                      case SDL_SCANCODE_UP:
+                        rifle.angle-=0.1;
+                      case SDL_SCANCODE_DOWN:
+                        rifle.angle-=0.1;
+                      case SDL_SCANCODE_LEFT:
+                      case SDL_SCANCODE_RIGHT:
+
                     }
                 }
             }
