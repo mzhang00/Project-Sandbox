@@ -78,8 +78,8 @@ int main(){
        SDL_FreeSurface(surface);
        rifle.x = 0;
        rifle.y = 0;
-       rifle.w = 30;
-       rifle.h = 10;
+       rifle.w = 300;
+       rifle.h = 100;
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
