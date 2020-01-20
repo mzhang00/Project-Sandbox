@@ -63,10 +63,10 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
   //Displays rifle
   if(rifleOn){
     SDL_RendererFlip flip = SDL_FLIP_NONE;
-    SDL_Point * center;
-    center->x = rifle->x;
-    center->y = rifle->y;
-    SDL_RenderCopyEx(rend,rifleText,NULL,rifle,45.0,center,flip);
+    SDL_Point center;
+    center.x = rifle->x;
+    center.y = rifle->y;
+    SDL_RenderCopyEx(rend,rifleText,NULL,rifle,45.0,&center,flip);
   }
 
 
