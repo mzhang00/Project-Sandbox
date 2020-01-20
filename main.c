@@ -9,7 +9,7 @@ int main(){
   else {
         int t = time(NULL);
         int mode = 0;
-        int rifleOn = 0;
+        int rifleOn;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -255,23 +255,23 @@ int main(){
                         }
                         break;
                      }
-                  break;
-                case 3:
-                  switch (event.key.keysym.scancode) {
-                    case SDL_SCANCODE_SPACE:
-                      if (idx < 5) {
-                          idx++;
-                      }
-                      else {
-                        idx = 0;
-                      }
-                      break;
-                    case SDL_SCANCODE_X:
-                        rifleOn = 0;
-                        mode = 2;
+                    break;
+                  case 3:
+                    switch (event.key.keysym.scancode) {
+                      case SDL_SCANCODE_SPACE:
+                        if (idx < 5) {
+                            idx++;
+                        }
+                        else {
+                          idx = 0;
+                        }
                         break;
-                  }
-              }
+                      case SDL_SCANCODE_X:
+                          rifleOn = 0;
+                          mode = 2;
+                          break;
+                    }
+                }
             }
             move(rect, idx, screen);
             if (rect[idx].x >= maps[1].x + 1) {
