@@ -22,6 +22,7 @@ struct rifleGun {
   SDL_Point center;
   double angle;
   int rifleMode;
+  SDL_RendererFlip flip;
 };
 
 int init();

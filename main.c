@@ -83,7 +83,7 @@ int main(){
        calculateCenter(&rifle,displayedRifle);
        rifle.angle = 0;
        rifle.rifleMode = 0;
-
+       rifle.flip = SDL_FLIP_NONE;
         // let us control our image position
         // so that we can move it with our keyboard.
         SDL_Rect * rect = malloc(6*sizeof(SDL_Rect));
@@ -275,12 +275,21 @@ int main(){
                           mode = 2;
                           break;
                       case SDL_SCANCODE_UP:
-                        rifle.angle-=0.1;
+                        if(rifle.angle>-45)
+                          rifle.angle-=0.1;
                       case SDL_SCANCODE_DOWN:
-                        rifle.angle-=0.1;
+                        if(rifle.angle<45)
+                          rifle.angle-=0.1;
                       case SDL_SCANCODE_LEFT:
+                        if(flip == SDL_FLIP_NONE){
+                          flip = SDL_FLIP_VERTICAL;
+                          angle = 0;
+                        }
                       case SDL_SCANCODE_RIGHT:
-
+                        if(flip != SDL_FLIP_NONE){
+                          flip = SDL_FLIP_NONE;
+                          angle = 0;
+                        }
                     }
                 }
             }
