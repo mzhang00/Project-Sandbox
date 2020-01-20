@@ -76,6 +76,6 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
 void calculateCenter(struct rifleGun * rifle, SDL_Rect displayedRifle){
   int finalX = displayedRifle.x;//+displayedRifle.w/2;
   int finalY = displayedRifle.y;//+displayedRifle.h/2;
-  (&(rifle->center))->x =finalX;
-  (&(rifle->center))->y =finalY;
+  (&(rifle->center))->x =0;
+  (&(rifle->center))->y =0;
 }

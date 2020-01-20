@@ -70,7 +70,7 @@ int main(){
        }
        //Displaying Gun
        getcwd(cwd, 100);
-       strcat(cwd, "/rifle2.bmp");
+       strcat(cwd, "/rifle3.bmp");
        surface = SDL_LoadBMP(cwd);
        SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
        SDL_Rect displayedRifle;
@@ -305,7 +305,6 @@ int main(){
             if (rect[idx].x <= maps[1].x +1) {
               screen = 0;
             }
-            calculateCenter(&rifle,displayedRifle);
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&displayedRifle, rifleText, rifle);
         }
       }
