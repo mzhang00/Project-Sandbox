@@ -270,45 +270,27 @@ int main(){
                         rifleOn = 0;
                         mode = 2;
                         break;
-                    }
-                    break;
                   }
-                }
-                move(rect, idx, screen);
-                if (rect[idx].x >= maps[1].x + 1) {
-                  screen = 1;
-                }
-                if (rect[idx].x <= maps[1].x +1) {
-                  screen = 0;
-                }
-                /*if (t != time(NULL)) {
-                  t = time(NULL);
-                  printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
-                }*/
-/*
-            // right boundary
-            if (rect.x + rect.w > 1000)
-                rect.x = 1000 - rect.w;
-            // left boundary
-            if (rect.x < 0)
-                rect.x = 0;
-            // bottom boundary
-            if (rect.y + rect.h > 1000)
-                rect.y = 1000 - rect.h;
-            // upper boundary
-            if (rect.y < 0)
-                rect.y = 0;
-*/
+              }
+            }
+            move(rect, idx, screen);
+            if (rect[idx].x >= maps[1].x + 1) {
+              screen = 1;
+            }
+            if (rect[idx].x <= maps[1].x +1) {
+              screen = 0;
+            }
+
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&rifle, rifleText, rifleOn);
         }
       }
-        free(rect);
-        free(maps);
-        free(mapsText);
-        free(screens);
-        free(screenText);
-        close1(rend,tex,win);
-      }
+      free(rect);
+      free(maps);
+      free(mapsText);
+      free(screens);
+      free(screenText);
+      close1(rend,tex,win);
+  }
 
   return 0;
 }
