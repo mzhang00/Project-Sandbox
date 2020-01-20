@@ -277,19 +277,23 @@ int main(){
                       case SDL_SCANCODE_UP:
                         if(rifle.angle>-45)
                           rifle.angle-=0.1;
+                        break;
                       case SDL_SCANCODE_DOWN:
                         if(rifle.angle<45)
-                          rifle.angle-=0.1;
+                          rifle.angle+=0.1;
+                        break;
                       case SDL_SCANCODE_LEFT:
                         if(rifle.flip == SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_VERTICAL;
                           rifle.angle = 0;
                         }
+                        break;
                       case SDL_SCANCODE_RIGHT:
                         if(rifle.flip != SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_NONE;
                           rifle.angle = 0;
                         }
+                        break;
                     }
                 }
             }
