@@ -62,8 +62,7 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
 
   //Displays rifle
   if(rifle.rifleMode){
-    SDL_RendererFlip flip = SDL_FLIP_NONE;
-    SDL_RenderCopyEx(rend,rifleText,NULL,displayedRifle,rifle.angle,&(rifle.center),flip);
+    SDL_RenderCopyEx(rend,rifleText,NULL,displayedRifle,rifle.angle,&(rifle.center),rifle.flip);
   }
 
 
@@ -75,8 +74,8 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
   SDL_Delay(1000 / 60);
 }
 void calculateCenter(struct rifleGun * rifle, SDL_Rect displayedRifle){
-  int finalX = displayedRifle.x+displayedRifle.w/2;
-  int finalY = displayedRifle.y+displayedRifle.h/2;
-  rifle->center.x =finalX;
-  rifle->center.y =finalY;
+  int finalX = displayedRifle.x;//+displayedRifle.w/2;
+  int finalY = displayedRifle.y;//+displayedRifle.h/2;
+  (&(rifle->center))->x =finalX;
+  (&(rifle->center))->y =finalY;
 }

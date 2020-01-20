@@ -80,7 +80,7 @@ int main(){
        displayedRifle.y = 0;
        displayedRifle.w = 300;
        displayedRifle.h = 100;
-       calculateCenter(&rifle,displayedRifle);
+
        rifle.angle = 0;
        rifle.rifleMode = 0;
        rifle.flip = SDL_FLIP_NONE;
@@ -246,6 +246,7 @@ int main(){
                         displayedRifle.x = rect[idx].x;
                         displayedRifle.y = rect[idx].y;
                         rifle.rifleMode = 1;
+                        calculateCenter(&rifle,displayedRifle);
                         break;
                       case SDL_SCANCODE_3:
                         //boot
@@ -276,15 +277,15 @@ int main(){
                           break;
                       case SDL_SCANCODE_UP:
                         if(rifle.angle>-45)
-                          rifle.angle-=0.1;
+                          rifle.angle-=1;
                         break;
                       case SDL_SCANCODE_DOWN:
                         if(rifle.angle<45)
-                          rifle.angle+=0.1;
+                          rifle.angle+=1;
                         break;
                       case SDL_SCANCODE_LEFT:
                         if(rifle.flip == SDL_FLIP_NONE){
-                          rifle.flip = SDL_FLIP_VERTICAL;
+                          rifle.flip = SDL_FLIP_HORIZONTAL;
                           rifle.angle = 0;
                         }
                         break;
@@ -304,7 +305,7 @@ int main(){
             if (rect[idx].x <= maps[1].x +1) {
               screen = 0;
             }
-
+            calculateCenter(&rifle,displayedRifle);
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),&displayedRifle, rifleText, rifle);
         }
       }
