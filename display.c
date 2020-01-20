@@ -61,8 +61,14 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
   SDL_RenderCopy(rend, tex3, NULL, rect3);
 
   //Displays rifle
-  if(rifleOn)
-    SDL_RenderCopy(rend,rifleText,NULL,rifle);
+  if(rifleOn){
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    SDL_Point * center;
+    center->x = rifle->x;
+    center->y = rifle->y;
+    SDL_RenderCopyEx(rend,rifleText,NULL,rifle,45.0,center,flip);
+  }
+
 
   // triggers the double buffers
   // for multiple rendering
