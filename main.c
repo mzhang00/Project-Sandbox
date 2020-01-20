@@ -272,7 +272,6 @@ int main(){
                         break;
                     }
                     break;
-
                   }
                 }
                 move(rect, idx, screen);
