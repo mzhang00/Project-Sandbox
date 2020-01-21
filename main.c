@@ -401,6 +401,9 @@ int main(){
               healthbars[i].x = rect[i].x - 3;
               healthbars[i].y = rect[i].y - 7;
             }
+            // so that rifle follows unit when scrolling
+            displayedRifle.x = rect[idx].x+rect[idx].w/2;
+            displayedRifle.y = rect[idx].y+rect[idx].h/2-5;
             //move(healthbars, idx, screen); // make health bars move with player
 
             if (rect[idx].x >= maps[1].x + 1) {
