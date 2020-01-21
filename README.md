@@ -25,5 +25,5 @@ We originally apportioned our tasks equally across every manner of the game. But
 -Gun damages 95% of the time when properly aimed. <br />
 -Gun sometimes flips around improperly during direcional use <br/>
 -Some arrow keys, on the bottom screen, may not function- this was done purposefully due to scarcity of time.<br />
--Game takes a long time to render, could take up to a minute, once screen pops up.<br\>
+-Game takes a long time to render, could take up to a minute, once screen pops up.<br/>
 -If the unit moves too far to the left or right of the map, the window will go past the edge of the map and show a solid block of colour.
