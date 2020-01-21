@@ -1,4 +1,5 @@
 #include "move.h"
+#include "display.h"
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
@@ -387,4 +388,26 @@ int whereRectComapredToRect(struct rect rect1, struct rect rect2){
 float calcCenter(int *cX, int *cY, struct rect recty){
   *cX = recty.x+recty.w/2;
   *cY = recty.y+recty.l/2;
+}
+int detectBulletIntersectRect(struct rifleGun rifle, SDL_Rect recty){
+  if (rifle.flip == SDL_FLIP_NONE){
+    if(rifle.x>recty.x){
+      return 0;
+    }
+    int y = rifle.x+(recty.x-rifle.y)/sin(-1 * rifle.angle);
+    if (y>recty.y && y<rect.y+recty.h){
+      return 1
+    }
+    return 0;
+  }
+  else{
+    if(rifle.x<recty.x){
+      return 0;
+    }
+    int y = rifle.x+(recty.x+recty.w-rifle.y)/sin(-1* rifle.angle);
+    if (y>recty.y && y<rect.y+recty.h){
+      return 1
+    }
+    return 0;
+  }
 }
