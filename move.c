@@ -392,23 +392,27 @@ float calcCenter(int *cX, int *cY, struct rect recty){
   *cY = recty.y+recty.l/2;
 }
 int detectBulletIntersectRect(struct rifleGun rifle, SDL_Rect shooting_unit, SDL_Rect recty){
-  int xRight = (int)(shooting_unit.x+cos(rifle.angle));
-  int xLeft = (int)(shooting_unit.x-cos(rifle.angle));
-  int yUp = (int)(shooting_unit.y+sin(-1*rifle.angle));
-  int yDown = (int)(shooting_unit.y-sin(-1*rifle.angle));
+  int xRight = (int)(shooting_unit.x+10000*cos(-rifle.angle*M_PI /180.0));
+  int xLeft = (int)(shooting_unit.x-10000*cos(-rifle.angle*M_PI /180.0));
+  int yUp = (int)(shooting_unit.y-10000*sin(-rifle.angle*M_PI /180.0));
+  int yDown = (int)(shooting_unit.y+10000*sin(-rifle.angle*M_PI /180.0));
+
+  int actualShootingX = shooting_unit.x;
+  int actualShootingY = shooting_unit.y;
+
   if (rifle.flip == SDL_FLIP_NONE){
-    if(shooting_unit.x>recty.x){
-      return 0;
-    }
-    if(SDL_IntersectRectAndLine(&recty,&(shooting_unit.x),&(shooting_unit.y),&xRight, &yUp))
+    //if(shooting_unit.x>recty.x){
+    //  return 0;
+    //}
+    if(SDL_IntersectRectAndLine(&recty,&(actualShootingX),&(actualShootingY),&xRight, &yUp))
       return 1;
     return 0;
   }
   else{
-    if(shooting_unit.x<recty.x){
-      return 0;
-    }
-    if(SDL_IntersectRectAndLine(&recty,&(shooting_unit.x),&(shooting_unit.y),&xLeft, &yDown))
+    //if(shooting_unit.x<recty.x){
+    //  return 0;
+    //}
+    if(SDL_IntersectRectAndLine(&recty,&(actualShootingX),&(actualShootingY),&xLeft, &yDown))
       return 1;
     return 0;
   }
