@@ -54,8 +54,14 @@ Loaded the different bottom screens into the game
 calebK -- 2020-01-14 22:41
 Created infrastructure of arrow keys affecting game
 
+michaelZ -- 2020-01-15 11:15
+Finish logging key presses; two users on the same machine can now take turns; every key press will be recorded in a file alongside the player that made the key press; this file can later be read
+
 chrisC -- 2020-01-15 17:57
 Added BMP file of the 2nd half of the map. 
+
+michaelZ -- 2020-01-16 11:29
+Start working on adding networking
 
 chrisC -- 2020-01-16 23:10
 Coded the behaviours of the units in the 2nd map. 
@@ -97,6 +103,9 @@ Got triangles to appear over the nezukos, and they're colour-coded.
 rayL -- 2020-01-21 04:02
 Centered health bars and made it look nicer.
 Centered triangular unit turn indicators and made it close to unit.
+
+michaelZ -- 2020-01-12 04:31
+Finish implementing sockets to establish connection between two players on different machines
 
 calebK 2020-01-22 04:46
 Finished Evyerthing about guns: Appearance , rotation, flipping, damage controls. 
