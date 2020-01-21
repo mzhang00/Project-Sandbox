@@ -234,8 +234,17 @@ int main(){
                     }
                     break;
                 }
+                int dif;
                 switch(mode){
                   case 0:
+                    dif = rect[idx].x - SCREEN_WIDTH/2;
+                    shift-=dif;
+                    for(int i = 0;i<6;i++){
+                      rect[i].x-=dif;
+                    }
+                    for(int i=0;i<2;i++){
+                      maps[i].x-=dif;
+                    }
                     switch (event.key.keysym.scancode) {
                       case SDL_SCANCODE_1:
                         mode = 1;
