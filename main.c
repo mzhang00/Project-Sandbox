@@ -185,8 +185,8 @@ int main(){
           } else if(recty >= 540) {
             recty = 539;
           }
-          healthbars[i].x = rect[i].x;
-          healthbars[i].y = rect[i].y;
+          // healthbars[i].x = rect[i].x - 20;
+          // healthbars[i].y = rect[i].y - 50;
           healthbars[i].w = 50;
           healthbars[i].h = 5;
         }
@@ -390,9 +390,9 @@ int main(){
             }
             move(rect, idx, screen);
             for (int i = 0 ; i < 6; i++) {
-            healthbars[i].x = rect[i].x;
-            healthbars[i].y = rect[i].y;
-          }
+              healthbars[i].x = rect[i].x - 3;
+              healthbars[i].y = rect[i].y - 7;
+            }
             //move(healthbars, idx, screen); // make health bars move with player
 
             if (rect[idx].x >= maps[1].x + 1) {
