@@ -297,7 +297,7 @@ int main(){
                         for (int j=0;j<6;j++){
                           if(j==idx)
                             continue;
-                          if(detectBulletIntersectRect(rifle,rect[j])){
+                          if(detectBulletIntersectRect(rifle,rect[idx],rect[j])){
                             units[idx].health-=30;
                           }
                         }
