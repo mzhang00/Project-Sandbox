@@ -19,3 +19,8 @@ Then, the include <SDL> dependencies in the header and main files in the program
   
 ## Formal Apology 
 We originally apportioned our tasks equally across every manner of the game. But as time went on and the project developed, a very clear inbalance of effort was emerging. This was due to it taking an entire week to get SDL installed, which ate up a lot of our time. Two of the members were heavily focused on learning the SDL lingo, while one assured that he would get the networking with sockets done on time. Eventually the project progressed beyond a point where one could easily jump in and assist with the coding, and there was a lack of communication between the SDL developers and the socket manager. In fact, it was only until 5 AM of the due date of the project when any communication was initiated by the socket developer. At which point, it was already too late to integrate any of the networking code into our game in any meaningful way. As a result, we only have the allocation of memory with malloc() that is used in the game.  
+
+## Bugs
+-Gun damages 95% of the time when properly aimed.
+-Some arrow keys, on the bottom screen, may not function- this was done purposefully due to scarcity of time.
+-Game takes a long time to load, once screen pops up.
