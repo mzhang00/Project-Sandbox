@@ -1,6 +1,7 @@
 #include "display.h"
 #include "move.h"
 #include <time.h>
+#include <math.h>
 
 int main(){
   if (!init()) {
@@ -9,6 +10,7 @@ int main(){
   else {
     int t = time(NULL);
         int mode = 0;
+        int dir = 1;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -68,7 +70,7 @@ int main(){
          }
          SDL_FreeSurface(surface);
        }
-        
+
 
         SDL_Rect * maps = malloc(2*sizeof(SDL_Rect));
         SDL_Texture ** mapsText = malloc(2*sizeof(SDL_Texture *));
@@ -134,7 +136,7 @@ int main(){
               break;
             case 3:
               rect[i].x = 245+SCREEN_WIDTH;
-              rect[i].y = 281;
+              rect[i].y = 284;
               break;
             case 4:
               rect[i].x = 150;
@@ -234,12 +236,14 @@ int main(){
                         break;
                       case SDL_SCANCODE_LEFT:
                         rect[idx].x -= speed / 30;
+                        dir = -1;
                         break;
                       case SDL_SCANCODE_DOWN:
                         down_check(rect,idx,screen);
                         break;
                       case SDL_SCANCODE_RIGHT:
                         rect[idx].x += speed / 30;
+                        dir = 1;
                         break;
                       case SDL_SCANCODE_1:
                         mode = 2;
@@ -289,18 +293,29 @@ int main(){
                 }
                 move(rect, idx, screen);
                 move(healthbars, idx, screen); // make health bars move with player
-                
+
                 if (rect[idx].x >= maps[1].x + 1) {
                   screen = 1;
                 }
                 if (rect[idx].x <= maps[1].x +1) {
                   screen = 0;
                 }
-                if (t != time(NULL)) {
-                  t = time(NULL);
-                  printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
+                if (rect[idx].x >= SCREEN_WIDTH/4+21 && rect[idx].x <= (3*SCREEN_WIDTH)/4+21) {
+                  int dif = (-shift+SCREEN_WIDTH/2+21)/2 - rect[idx].x;
+                  shift += dif;
+                  for (int i = 0; i < 2; i++) {
+                    maps[i].x += dif;
+                  }
+                  for (int i = 0; i < 6; i++) {
+                    rect[i].x += dif;
+                  }
                 }
 /*
+                if (t != time(NULL)) {
+                  t = time(NULL);
+                  printf("x: %d\t equals: %d\n",rect[idx].x, (3*SCREEN_WIDTH)/2);
+                }
+
             // right boundary
             if (rect.x + rect.w > 1000)
                 rect.x = 1000 - rect.w;

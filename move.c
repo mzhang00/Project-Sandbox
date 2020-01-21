@@ -50,60 +50,60 @@ void move(SDL_Rect * rec, int num, int scr) {
     }
     else if (x >= 456 && x <= 495){
       if (y == 284) rec[num].y = 295;
-      else if (y != 295) rec[num].y = 170;
+      else if (y <= 280) rec[num].y = 170;
     }
     else if (x > 495 && x < 537) {
       //perform death
     }
     else if (x >= 537 && x <= 579){
       if (y == 284) rec[num].y = 295;
-      else if (y != 295) rec[num].y = 170;
+      else if (y <= 280) rec[num].y = 170;
     }
     else if (x >= 579 && x <= 644){
       if (y == 170 || y == 295 || (y == 175 && x <= 600)) rec[num].y = 284;
-      else if (y < 281) rec[num].y = 175;
+      else if (y < 284) rec[num].y = 175;
     }
   }
   else {
     if (x >= -21 && x <= 33){
-      if (y == 263 || (y == 175 && x >= 12)) rec[num].y = 281;
-      else if (y < 281 && x <= 12) rec[num].y = 175;
+      if (y == 263 || (y == 175 && x >= 12)) rec[num].y = 284;
+      else if (y < 284 && x <= 12) rec[num].y = 175;
     }
     else if (x >= 33 && x <= 57){
       if (y == 242) rec[num].y = 263;
-      else if (y != 263) rec[num].y = 281;
+      else if (y != 263) rec[num].y = 284;
     }
     else if (x >= 57 && x <= 81){
       if (y == 224 || y == 263) rec[num].y = 242;
-      else if (y != 242) rec[num].y = 281;
+      else if (y != 242) rec[num].y = 284;
     }
     else if (x >= 81 && x <= 102){
       if (y == 203 || y == 242) rec[num].y = 224;
-      else if (y != 224) rec[num].y = 281;
+      else if (y != 224) rec[num].y = 284;
     }
     else if (x >= 102 && x <= 138){
       if (y == 182 || y == 224) rec[num].y = 203;
-      else if (y != 203) rec[num].y = 281;
+      else if (y != 203) rec[num].y = 284;
     }
     else if (x >= 138 && x <= 204){
       if (y <= 203) rec[num].y = 182;
-      else if (y != 182) rec[num].y = 281;
+      else if (y != 182) rec[num].y = 284;
     }
     else if (x >= 204 && x <= 228){
       if (y == 143) rec[num].y = 161;
-      else if (y != 161 && y != 281) rec[num].y = 182 - .1316*(x - 182);
+      else if (y != 161 && y != 284) rec[num].y = 182 - .1316*(x - 182);
     }
     else if (x >= 228 && x <= 294){
       if (y == 161) rec[num].y = 143;
-      else if (y != 143 && y != 281) rec[num].y = 182 - .1316*(x - 182);
+      else if (y != 143 && y != 284) rec[num].y = 182 - .1316*(x - 182);
     }
     else if (x >= 294 && x <= 345){
       if (y == 143) rec[num].y = 167;
-      else if (y != 167) rec[num].y = 281;
+      else if (y != 167) rec[num].y = 284;
     }
     else if (x >= 345 && x <= 393){
-      if (y == 167 || y == 251 || (y == 188 && x >= 384)) rec[num].y = 281;
-      else if (y != 281 && x > 384) rec[num].y = 188;
+      if (y == 167 || y == 251 || (y == 188 && x >= 384)) rec[num].y = 284;
+      else if (y != 284 && x > 384) rec[num].y = 188;
     }
     else if (x >= 393 && x <= 465){
       if (y == 188 && x >= 450) rec[num].y = 251;
@@ -165,36 +165,36 @@ void up_check(SDL_Rect * rec, int num, int scr) {
   }
   else {
     if (x >= -21 && x <= 33){
-      if (y == 281 && x <= 12) rec[num].y = 175;
+      if (y == 284 && x <= 12) rec[num].y = 175;
     }
     else if (x >= 33 && x <= 57){
-      if (y == 281) rec[num].y = 263;
+      if (y == 284) rec[num].y = 263;
     }
     else if (x >= 57 && x <= 81){
-      if (y == 281) rec[num].y = 242;
+      if (y == 284) rec[num].y = 242;
     }
     else if (x >= 81 && x <= 102){
-      if (y == 281) rec[num].y = 224;
+      if (y == 284) rec[num].y = 224;
     }
     else if (x >= 102 && x <= 138){
-      if (y == 281) rec[num].y = 203;
+      if (y == 284) rec[num].y = 203;
     }
     else if (x >= 138 && x <= 204){
-      if (y == 281) rec[num].y = 182;
+      if (y == 284) rec[num].y = 182;
     }
     else if (x >= 204 && x <= 228){
-      if (y < 281) rec[num].y = 161;
-      else if (y == 281) rec[num].y = 182 - .1316*(x - 182);
+      if (y < 284) rec[num].y = 161;
+      else if (y == 284) rec[num].y = 182 - .1316*(x - 182);
     }
     else if (x >= 228 && x <= 294){
-      if (y < 281) rec[num].y = 143;
-      else if (y == 281) rec[num].y = 182 - .1316*(x - 182);
+      if (y < 284) rec[num].y = 143;
+      else if (y == 284) rec[num].y = 182 - .1316*(x - 182);
     }
     else if (x >= 294 && x <= 345){
-      if (y == 281) rec[num].y = 167;
+      if (y == 284) rec[num].y = 167;
     }
     else if (x >= 345 && x <= 393){
-      if (y == 281 && x >= 384) rec[num].y = 188;
+      if (y == 284 && x >= 384) rec[num].y = 188;
     }
     else if (x >= 393 && x <= 465){
       if (y == 251 && x <= 450) rec[num].y = 188;
@@ -253,36 +253,36 @@ void down_check(SDL_Rect * rec, int num, int scr) {
   }
   else {
     if (x >= -21 && x <= 33){
-      if (y == 175 && x <= 12) rec[num].y = 281;
+      if (y == 175 && x <= 12) rec[num].y = 284;
     }
     else if (x >= 33 && x <= 57){
-      if (y == 263) rec[num].y = 281;
+      if (y == 263) rec[num].y = 284;
     }
     else if (x >= 57 && x <= 81){
-      if (y == 242) rec[num].y = 281;
+      if (y == 242) rec[num].y = 284;
     }
     else if (x >= 81 && x <= 102){
-      if (y == 224) rec[num].y = 281;
+      if (y == 224) rec[num].y = 284;
     }
     else if (x >= 102 && x <= 138){
-      if (y == 203) rec[num].y = 281;
+      if (y == 203) rec[num].y = 284;
     }
     else if (x >= 138 && x <= 204){
-      if (y == 182) rec[num].y = 281;
+      if (y == 182) rec[num].y = 284;
     }
     else if (x >= 204 && x <= 228){
       if (y == 161) rec[num].y = 182 - .1316*(x - 182);
-      else if (y > 161 && y < 281) rec[num].y = 281;
+      else if (y > 161 && y < 284) rec[num].y = 284;
     }
     else if (x >= 228 && x <= 294){
       if (y == 143) rec[num].y = 182 - .1316*(x - 182);
-      else if (y > 161 && y < 281) rec[num].y = 281;
+      else if (y > 161 && y < 284) rec[num].y = 284;
     }
     else if (x >= 294 && x <= 345){
-      if (y == 167) rec[num].y = 281;
+      if (y == 167) rec[num].y = 284;
     }
     else if (x >= 345 && x <= 393){
-      if (y == 188 && x >= 384) rec[num].y = 281;
+      if (y == 188 && x >= 384) rec[num].y = 284;
     }
     else if (x >= 393 && x <= 465){
       if (y == 188 && x <= 450) rec[num].y = 251;
