@@ -338,22 +338,24 @@ int main(){
                           if(j==idx)
                             continue;
                           if(detectBulletIntersectRect(rifle,rect[idx],rect[j])){
-                            units[idx].health-=30;
+                            units[j].health-=30;
                           }
                         }
                         if (idx < 5) {
                             idx++;
-                            mode = 0;
-                            rifle.rifleMode=0;
                         }
                         else {
                           idx = 0;
-                          mode = 0;
-                          rifle.rifleMode=0;
                         }
+                        mode = 0;
+                        rifle.rifleMode=0;
+                        rifle.angle = 0;
+                        rifle.flip = SDL_FLIP_NONE;
                         break;
                       case SDL_SCANCODE_X:
                           rifle.rifleMode = 0;
+                          rifle.angle = 0;
+                          rifle.flip = SDL_FLIP_NONE;
                           mode = 2;
                           break;
                       case SDL_SCANCODE_UP:
@@ -422,7 +424,7 @@ int main(){
               t = time(NULL);
               printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
             }
-            
+
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units, &displayedRifle, rifleText, rifle);
         }
     free(rect);
