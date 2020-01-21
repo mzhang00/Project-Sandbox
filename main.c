@@ -343,9 +343,11 @@ int main(){
                         }
                         if (idx < 5) {
                             idx++;
+                            mode = 0;
                         }
                         else {
                           idx = 0;
+                          mode = 0;
                         }
                         break;
                       case SDL_SCANCODE_X:
