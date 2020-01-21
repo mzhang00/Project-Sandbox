@@ -1,5 +1,8 @@
 TERRITORY WARS DEVLOG
 
+calebK -- 2020-01-09 12:21
+Requested DW to install SDL library to create graphics.
+
 calebK -- 2020-01-10 23:19
 got SDL 2.0 to work using a PuTTy X11 server.
 showed everyone a tutorial to set up successfully.
