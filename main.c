@@ -321,12 +321,14 @@ int main(){
                         //boot
                         break;
                       case SDL_SCANCODE_4:
+                       while (units[idx].health !=  0) {
                         if (idx < 5) {
                           idx++;
                         }
                         else {
                           idx = 0;
                         }
+                      }
                         mode = 0;
                         break;
                      }
@@ -422,7 +424,7 @@ int main(){
               t = time(NULL);
               printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
             }
-            
+
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units, &displayedRifle, rifleText, rifle);
         }
     free(rect);
