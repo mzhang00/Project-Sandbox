@@ -407,7 +407,7 @@ int main(){
               t = time(NULL);
               printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
             }
-            */
+            
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units, &displayedRifle, rifleText, rifle);
         }
     free(rect);
