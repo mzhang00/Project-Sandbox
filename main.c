@@ -238,6 +238,7 @@ int main(){
                 switch(mode){
                   case 0:
                     dif = rect[idx].x - SCREEN_WIDTH/2;
+                    shift-=dif;
                     for(int i = 0;i<6;i++){
                       rect[i].x-=dif;
                     }
