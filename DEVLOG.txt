@@ -28,7 +28,7 @@ rayL -- 2020-01-13 02:54
 Got the gun menu to show up.
 
 chrisC -- 2020-01-13 20:36
-Enter keys now move around different units and units display using a double array.
+Enter keys now move around different units and units display using a double array. Allocated memory
 
 chrisC -- 2020-01-13 22:43
 Got a generic background map to show up.
