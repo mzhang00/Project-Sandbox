@@ -10,11 +10,7 @@ int main(){
   else {
         int t = time(NULL);
         int mode = 0;
-<<<<<<< HEAD
-        int dir = 1;
-=======
         struct rifleGun rifle;
->>>>>>> dcd5fbc8110a136d38a4e848b2d39b76b5aaf9b3
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -255,14 +251,14 @@ int main(){
                         break;
                       case SDL_SCANCODE_LEFT:
                         rect[idx].x -= speed / 30;
-                        dir = -1;
+                        //dir = -1;
                         break;
                       case SDL_SCANCODE_DOWN:
                         down_check(rect,idx,screen);
                         break;
                       case SDL_SCANCODE_RIGHT:
                         rect[idx].x += speed / 30;
-                        dir = 1;
+                        //dir = 1;
                         break;
                       case SDL_SCANCODE_1:
                         mode = 2;
