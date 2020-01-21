@@ -8,6 +8,9 @@ Worked on the proposal with Caleb.
 calebK -- 2020-01-09 12:21
 Requested DW to install SDL library to create graphics.
 
+michaelZ -- 2020-01-10 11:41
+add preliminary code for the game's backend
+
 chrisC -- 2020-01-10 22:22
 Wrote a main function with a header containing the elements of a struct unit. 
 
@@ -27,11 +30,17 @@ Allowed user to move units around using the arrow keys.
 rayL -- 2020-01-13 02:54
 Got the gun menu to show up.
 
+michaelZ -- 2020-01-13 11:45
+Copy sample code for networking, work on establishing connections between two players
+
 chrisC -- 2020-01-13 20:36
 Enter keys now move around different units and units display using a double array. Allocated memory
 
 chrisC -- 2020-01-13 22:43
 Got a generic background map to show up.
+
+michaelZ -- 2020-01-14 11:53
+Start working on logging user key presses
 
 chrisC -- 2020-01-14 19:00
 Photoshopped out the characters and stray elements from the background map and added a new character model (Nezuko Kamado from Kimetsu no Yaiba)
