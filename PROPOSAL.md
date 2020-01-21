@@ -45,7 +45,7 @@ Data structures:
 </ul>
 Algorithms:
 <ul>
-  <li>Game process will read map file and set up map with ncurses.
+  <li>Game process will read map file and set up map with SDL.
   <li>Game Process will create Player 1 Process and Player 2 Process
   <li>The Player processes will create the stickmen and send the coordinates to the game process. Game Process will display players and turn the game over to Player 1
   <li>Player 1 or Player 2 will constant communicate, via pipes,  with Game Process to move character, shoot , and to limit distance
