@@ -187,7 +187,7 @@ int main(){
           }
           healthbars[i].x = rectx;
           healthbars[i].y = recty;
-          healthbars[i].w = 100;
+          healthbars[i].w = 50;
           healthbars[i].h = 5;
         }
 
