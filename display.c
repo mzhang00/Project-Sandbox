@@ -72,9 +72,9 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
       else {
         SDL_SetRenderDrawColor(rend, 0, 0, 255, SDL_ALPHA_OPAQUE);
       }
-      SDL_RenderDrawLine(rend, rect[i].x + 10, rect[i].y-20, rect[i].x-20, rect[i].y-40);
-      SDL_RenderDrawLine(rend, rect[i].x-20, rect[i].y-40, rect[i].x+40, rect[i].y-40);
-      SDL_RenderDrawLine(rend, rect[i].x + 40, rect[i].y-40, rect[i].x + 10, rect[i].y-20);
+      SDL_RenderDrawLine(rend, rect[i].x + 20, rect[i].y-10, rect[i].x-10, rect[i].y-30);
+      SDL_RenderDrawLine(rend, rect[i].x-10, rect[i].y-30, rect[i].x+50, rect[i].y-30);
+      SDL_RenderDrawLine(rend, rect[i].x + 50, rect[i].y-30, rect[i].x + 20, rect[i].y-10);
     }
   }
   //SDL_SetRenderDrawColor(rend, 0, 0, 0, SDL_ALPHA_OPAQUE);
