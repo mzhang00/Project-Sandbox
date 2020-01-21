@@ -5,3 +5,7 @@ rayL -- 2020-01-17 11:09
 Created health bars that correspond to the units' health.
 Merged health-bars branch into master.
 
+rayL -- 2020-01-21 04:02
+Centered health bars and made it look nicer.
+Centered triangular unit turn indicators and made it close to unit.
+
