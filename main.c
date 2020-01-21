@@ -164,18 +164,18 @@ int main(){
           }
 
           units[i].number = 0;
-          units[i].health = rand()%75;
+          units[i].health = 100;
           units[i].weapon_id = 0;
           units[i].moves_left = 10;
-          units[i].x = i * (SCREEN_WIDTH - rect[i].w)/6;
-          units[i].y = (SCREEN_HEIGHT - rect[i].h) / 2;
+          units[i].x = rect[i].x;
+          units[i].y = rect[i].y;
           units[i].team = 0;
           units[i].unit_rect = rect[i];
           units[i].unit_tex = tex;
 
           // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-          int rectx = rect[i].x - 30;
-          int recty = rect[i].y - 10;
+          /*int rectx = rect[i].x - 50;
+          int recty = rect[i].y + 10;
           if ((rectx <= 0)) {
             rectx = 1;
           } else if (recty <= 0) {
@@ -217,6 +217,7 @@ int main(){
                       }
                       for (int i = 0; i < 6; i++) {
                         rect[i].x -= 10;
+                        healthbars[i].x -= 10;
                       }
                     }
                     break;
@@ -228,6 +229,7 @@ int main(){
                       }
                       for (int i = 0; i < 6; i++) {
                         rect[i].x += 10;
+                        healthbars[i].x += 10;
                       }
                     }
                     break;
@@ -251,6 +253,7 @@ int main(){
                         break;
                       case SDL_SCANCODE_LEFT:
                         rect[idx].x -= speed / 30;
+                        healthbars[idx].x -= speed / 30;
                         //dir = -1;
                         break;
                       case SDL_SCANCODE_DOWN:
@@ -258,6 +261,7 @@ int main(){
                         break;
                       case SDL_SCANCODE_RIGHT:
                         rect[idx].x += speed / 30;
+                        healthbars[idx].x += speed / 30;
                         //dir = 1;
                         break;
                       case SDL_SCANCODE_1:
@@ -297,7 +301,7 @@ int main(){
                         for (int j=0;j<6;j++){
                           if(j==idx)
                             continue;
-                          if(detectBulletIntersectRect(rifle,rect[j])){
+                          if(detectBulletIntersectRect(rifle,rect[idx],rect[j])){
                             units[idx].health-=30;
                           }
                         }
@@ -349,7 +353,9 @@ int main(){
               }
             }
             move(rect, idx, screen);
-            move(healthbars, idx, screen); // make health bars move with player
+            healthbars[idx].x = rect[idx].x;
+            healthbars[idx].x = rect[idx].y- 20;
+            //move(healthbars, idx, screen); // make health bars move with player
 
             if (rect[idx].x >= maps[1].x + 1) {
               screen = 1;
@@ -357,17 +363,18 @@ int main(){
             if (rect[idx].x <= maps[1].x +1) {
               screen = 0;
             }
-            if (rect[idx].x >= SCREEN_WIDTH/4+21 && rect[idx].x <= (3*SCREEN_WIDTH)/4+21) {
-              int dif = (-shift+SCREEN_WIDTH/2+21)/2 - rect[idx].x;
+            if (rect[idx].x >= SCREEN_WIDTH/4-10 && rect[idx].x <= (3*SCREEN_WIDTH)/4 -30) {
+              int dif = (-shift-21+SCREEN_WIDTH/2)/2 - rect[idx].x;
               shift += dif;
               for (int i = 0; i < 2; i++) {
                 maps[i].x += dif;
               }
               for (int i = 0; i < 6; i++) {
                 rect[i].x += dif;
+                healthbars[i].x += dif;
               }
             }
-            /*
+
             if (t != time(NULL)) {
               t = time(NULL);
               printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
