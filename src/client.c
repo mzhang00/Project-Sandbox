@@ -25,7 +25,7 @@ void recv_msg_handler() {
         int receive = recv(sockfd, receiveMessage, LENGTH_SEND, 0);
         if (receive > 0) {
             //printf("\r%s\n", receiveMessage);
-            str_overwrite_stdout();
+            //str_overwrite_stdout();
         } else if (receive == 0) {
             break;
         } else {
@@ -93,6 +93,18 @@ int main(int argc, char * argv[])
     printf("You are: %s:%d\n", inet_ntoa(client_info.sin_addr), ntohs(client_info.sin_port));
 
     send(sockfd, nickname, LENGTH_NAME, 0);
+
+    pthread_t send_msg_thread;
+    if (pthread_create(&send_msg_thread, NULL, (void *) send_msg_handler, NULL) != 0) {
+        printf ("Create pthread error!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    pthread_t recv_msg_thread;
+    if (pthread_create(&recv_msg_thread, NULL, (void *) recv_msg_handler, NULL) != 0) {
+        printf ("Create pthread error!\n");
+        exit(EXIT_FAILURE);
+    }
 
     while (1) {
         if(flag) {
