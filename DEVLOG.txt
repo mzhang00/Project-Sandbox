@@ -29,6 +29,9 @@ gun now appears
 calebK -- 2020-01-20 23:24
 finished rotating 
 
+rayL -- 2020-01-21 01:02
+halved the size of health bars
+
 rayL -- 2020-01-21 04:02
 Centered health bars and made it look nicer.
 Centered triangular unit turn indicators and made it close to unit.
