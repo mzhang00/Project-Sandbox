@@ -184,10 +184,10 @@ int main(){
             rectx = 539;
           } else if(recty >= 540) {
             recty = 539;
-          }*/
-          healthbars[i].x = rect[i].x;
-          healthbars[i].y = rect[i].y-20;
-          healthbars[i].w = 20;
+          }
+          healthbars[i].x = rectx;
+          healthbars[i].y = recty;
+          healthbars[i].w = 50;
           healthbars[i].h = 5;
         }
 
@@ -301,7 +301,7 @@ int main(){
                         for (int j=0;j<6;j++){
                           if(j==idx)
                             continue;
-                          if(detectBulletIntersectRect(rifle,rect[j])){
+                          if(detectBulletIntersectRect(rifle,rect[idx],rect[j])){
                             units[idx].health-=30;
                           }
                         }
