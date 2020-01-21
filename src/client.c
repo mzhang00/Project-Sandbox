@@ -94,12 +94,6 @@ int main(int argc, char * argv[])
 
     send(sockfd, nickname, LENGTH_NAME, 0);
 
-    pthread_t send_msg_thread;
-    if (pthread_create(&send_msg_thread, NULL, (void *) send_msg_handler, NULL) != 0) {
-        printf ("Create pthread error!\n");
-        exit(EXIT_FAILURE);
-    }
-
     while (1) {
         if(flag) {
             printf("\nBye\n");
