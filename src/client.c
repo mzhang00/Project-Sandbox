@@ -54,7 +54,7 @@ void send_msg_handler() {
     catch_ctrl_c_and_exit(2);
 }
 
-int main()
+int main(int argc, char * argv[])
 {
     signal(SIGINT, catch_ctrl_c_and_exit);
 
