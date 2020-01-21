@@ -1,5 +1,9 @@
 TERRITORY WARS DEVLOG
 
+calebK -- 2020-01-10 23:19
+got SDL 2.0 to work using a PuTTy X11 server.
+showed everyone a tutorial to set up successfully.
+
 chrisC -- 2020-01-11 17:50
 Got a window to display using tutorials from Lazy Foo Productions.
 
