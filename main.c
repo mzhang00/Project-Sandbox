@@ -2,13 +2,14 @@
 #include "move.h"
 #include <time.h>
 #include <math.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 int main(){
   if (!init()) {
         printf("Failed to initialize\n");
       }
   else {
-        int t = time(NULL);
         int mode = 0;
         struct rifleGun rifle;
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
@@ -199,6 +200,7 @@ int main(){
 
         // annimation loop
         while (!close) {
+
             SDL_Event event;
 
             // Events mangement
@@ -321,14 +323,12 @@ int main(){
                         //boot
                         break;
                       case SDL_SCANCODE_4:
-                       while (units[idx].health !=  0) {
                         if (idx < 5) {
                           idx++;
                         }
                         else {
                           idx = 0;
                         }
-                      }
                         mode = 0;
                         break;
                      }
@@ -401,9 +401,6 @@ int main(){
               healthbars[i].x = rect[i].x - 3;
               healthbars[i].y = rect[i].y - 7;
             }
-            // so that rifle follows unit when scrolling
-            displayedRifle.x = rect[idx].x+rect[idx].w/2;
-            displayedRifle.y = rect[idx].y+rect[idx].h/2-5;
             //move(healthbars, idx, screen); // make health bars move with player
 
             if (rect[idx].x >= maps[1].x + 1) {
@@ -424,11 +421,6 @@ int main(){
                 healthbars[i].x += dif;
               }
             }*/
-
-            if (t != time(NULL)) {
-              t = time(NULL);
-              printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
-            }
 
             render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units, &displayedRifle, rifleText, rifle);
         }
