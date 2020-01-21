@@ -1,0 +1,42 @@
+[1mdiff --git a/main.c b/main.c[m
+[1mindex 87292b3..38f6fc0 100644[m
+[1m--- a/main.c[m
+[1m+++ b/main.c[m
+[36m@@ -174,7 +174,7 @@[m [mint main(){[m
+           units[i].unit_tex = tex;[m
+ [m
+           // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.[m
+[31m-          /*int rectx = rect[i].x - 50;[m
+[32m+[m[32m          int rectx = rect[i].x - 50;[m
+           int recty = rect[i].y + 10;[m
+           if ((rectx <= 0)) {[m
+             rectx = 1;[m
+[36m@@ -363,6 +363,7 @@[m [mint main(){[m
+             if (rect[idx].x <= maps[1].x +1) {[m
+               screen = 0;[m
+             }[m
+[32m+[m[32m            /*[m
+             if (rect[idx].x >= SCREEN_WIDTH/4-10 && rect[idx].x <= (3*SCREEN_WIDTH)/4 -30) {[m
+               int dif = (-shift-21+SCREEN_WIDTH/2)/2 - rect[idx].x;[m
+               shift += dif;[m
+[36m@@ -374,6 +375,17 @@[m [mint main(){[m
+                 healthbars[i].x += dif;[m
+               }[m
+             }[m
+[32m+[m[32m            */[m
+[32m+[m[32m            int dif = 0;[m
+[32m+[m[32m            if (rect[idx].x >= SCREEN_WIDTH/4-10 && rect[idx].x <= (3*SCREEN_WIDTH)/4 -30) {[m
+[32m+[m[32m               dif = SCREEN_WIDTH/2 - rect[idx].x;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            for (int i = 0; i < 2; i++) {[m
+[32m+[m[32m              maps[i].x +=dif;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            for (int i = 0; i < 6; i++) {[m
+[32m+[m[32m              rect[i].x +=dif;[m
+[32m+[m[32m            }[m
+ [m
+             if (t != time(NULL)) {[m
+               t = time(NULL);[m
+[1mdiff --git a/program b/program[m
+[1mindex 80c6534..0340da0 100755[m
+Binary files a/program and b/program differ
