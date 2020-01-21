@@ -2,10 +2,12 @@
 Chris Choi (Period 4), Caleb Kahan (Period 5), Ray Lee (Period 5), Michael Zhang (Period 5)
 
 ## Description
-For our project, we are planning to create a 2-dimensional turn-based multi-unit shooter game, based on games like Territory War, Worms, and Wild Ones. Players will play on the same machine and take turns controlling their units and attacking the other player’s units until one team reigns supreme. They will be able to use weapons to aim at the other units as well as move around their own units around the map. When all units belonging to a player have been vanquished, the other player will be considered the winner. 
+For our project, we created a 2-dimensional turn-based multi-unit shooter game, based on a flash game called Territory War. Players will play on the same machine and take turns controlling their units and attacking the other player’s units until one team reigns supreme. They will be able to use weapons to aim at the other units as well as move their own units around the map. When all units belonging to a player have been vanquished, the other player will be considered the winner. 
 
 ## User Interface
-The players will be able to use the arrow keys to manipulate their units' movements. When they have travelled the maximum distance allotted per turn, they will be able to use the arrow keys to control the aim of their weapon, as well as using number keys to control the power of the projectile that is fired from their weapon. Once they have chosen a setting that satisfies them, they hit enter and end their turn. Then, the next player will have access to the controls and will begin their turn. 
+The players will be presented with menus at the bottom of the window that will guide them. Pressing the 1 key will let the players move their unit. The players will be able to use the arrow keys to move their units around. The left and right arrow keys control its left and right direction, and the up and down arrow keys can be used when there is an elevation the unit can ascend or descend. For example, if there is a platform above the unit, the up arrow key will teleport the unit to the higher platform. 
+
+When they have travelled the maximum distance allotted per turn, they will be able to quit their movements and use weapons. The only usable weapon we have coded is the gun, which can be selected with the 2 key. The player can use arrow keys to control the aim of their weapon. Once they have chosen a setting that satisfies them, they can press space to fire the weapon and end their turn. Then, the next player will have access to the controls and will begin their turn. 
 
 ## Technical Design
 Topics Used: Allocating Memory:
@@ -50,84 +52,4 @@ Algorithms:
   <li>The Player processes will create the stickmen and send the coordinates to the game process. Game Process will display players and turn the game over to Player 1
   <li>Player 1 or Player 2 will constant communicate, via pipes,  with Game Process to move character, shoot , and to limit distance
   <li>Game Process will continue switching turns until the game is over. 
-</ul>
-
-## Devlog
-1/4/20 - 1/11/20: Tried and eventually successfully got SDL 2.0 to work using a PuTTy X11 server. Everyone
-1/11/20: 
-<ul>
-  <li>Chris: Got a window to display using tutorials from Lazy Foo Productions. 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/12/20: 
-<ul>
-  <li>Chris: Allowed window to close by clicking the "x" button and allowed user to move units around using arrow keys. 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/13/20: 
-<ul>
-  <li>Chris: Got a generic background map to show up. 
-  <li>Caleb: 
-  <li>Raymond: Got the gun menu to show up. 
-  <li>Michael: 
-</ul>
-1/14/20: 
-<ul>
-  <li>Chris: Photoshopped out the characters and stray elements from the background map, added a new character model (Nezuko Kamado from Kimetsu no Yaiba) and coded the behaviours of the characters based on where in the map they are.
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/15/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/16/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/17/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/18/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/19/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/20/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
-</ul>
-1/21/20: 
-<ul>
-  <li>Chris: 
-  <li>Caleb: 
-  <li>Raymond:
-  <li>Michael: 
 </ul>
