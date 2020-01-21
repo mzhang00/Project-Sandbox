@@ -310,33 +310,33 @@ int main(){
                           mode = 2;
                           break;
                       case SDL_SCANCODE_UP:
-                        if(rifle.angle>-45){
+                        if(rifle.angle>-45)
                           if(rifle.flip == SDL_FLIP_NONE)
                             rifle.angle-=1;
-                          else
+                        if(rifle.angle<45)
+                          if(rifle.flip != SDL_FLIP_NONE)
                             rifle.angle+=1;
-                        }
                         break;
                       case SDL_SCANCODE_DOWN:
                         if(rifle.angle<45)
                           if(rifle.flip == SDL_FLIP_NONE)
                             rifle.angle+=1;
-                          else
+                        if(rifle.angle>-45)
+                          if(rifle.flip != SDL_FLIP_NONE)
                             rifle.angle-=1;
-                          break;
-                        }
+                        break;
                       case SDL_SCANCODE_LEFT:
                         if(rifle.flip == SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_HORIZONTAL;
                           rifle.angle = 0;
-                          displayedRifle.x -= displayedRifle.w;
+                          rifle.center.x = -1*displayedRifle.w;
                         }
                         break;
                       case SDL_SCANCODE_RIGHT:
                         if(rifle.flip != SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_NONE;
                           rifle.angle = 0;
-                          displayedRifle.x -= displayedRifle.w;
+                          rifle.center.x = 0;
                         }
                         break;
                     }
@@ -357,13 +357,13 @@ int main(){
                 render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),healthbars, units, &displayedRifle, rifleText, rifle);
         }
       }
-      free(rect);
-      free(maps);
-      free(mapsText);
-      free(screens);
-      free(screenText);
-      close1(rend,tex,win);
+    }
+    free(rect);
+    free(maps);
+    free(mapsText);
+    free(screens);
+    free(screenText);
+    close1(rend,tex,win);
   }
-
   return 0;
 }
