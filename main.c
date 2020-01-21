@@ -185,8 +185,8 @@ int main(){
           } else if(recty >= 540) {
             recty = 539;
           }
-          healthbars[i].x = rect[i].x;
-          healthbars[i].y = rect[i].y;
+          // healthbars[i].x = rect[i].x - 20;
+          // healthbars[i].y = rect[i].y - 50;
           healthbars[i].w = 50;
           healthbars[i].h = 5;
         }
@@ -343,9 +343,13 @@ int main(){
                         }
                         if (idx < 5) {
                             idx++;
+                            mode = 0;
+                            rifle.rifleMode=0;
                         }
                         else {
                           idx = 0;
+                          mode = 0;
+                          rifle.rifleMode=0;
                         }
                         break;
                       case SDL_SCANCODE_X:
@@ -390,9 +394,9 @@ int main(){
             }
             move(rect, idx, screen);
             for (int i = 0 ; i < 6; i++) {
-            healthbars[i].x = rect[i].x;
-            healthbars[i].y = rect[i].y;
-          }
+              healthbars[i].x = rect[i].x - 3;
+              healthbars[i].y = rect[i].y - 7;
+            }
             //move(healthbars, idx, screen); // make health bars move with player
 
             if (rect[idx].x >= maps[1].x + 1) {
@@ -418,8 +422,8 @@ int main(){
               t = time(NULL);
               printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
             }
-
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),healthbars, units, &displayedRifle, rifleText, rifle);
+            
+            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units, &displayedRifle, rifleText, rifle);
         }
     free(rect);
     free(maps);
