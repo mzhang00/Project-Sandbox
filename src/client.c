@@ -100,66 +100,45 @@ int main(int argc, char * argv[])
         exit(EXIT_FAILURE);
     }
 
-    pthread_t recv_msg_thread;
-    if (pthread_create(&recv_msg_thread, NULL, (void *) recv_msg_handler, NULL) != 0) {
-        printf ("Create pthread error!\n");
-        exit(EXIT_FAILURE);
-    }
-
     while (1) {
         if(flag) {
             printf("\nBye\n");
             break;
         }
+        
         char name[500];
         if (argc > 1) {
-        strcpy(name, argv[1]);
+            strcpy(name, argv[1]);
         }else{
-        fgets(name, 500, stdin);
-        int i = 0;
-        while (name[i] != '\n') {
-            i++;
+            fgets(name, 500, stdin);
+            int i = 0;
+            while (name[i] != '\n') {
+                i++;
         }
         name[i] = '\0';
         }
 
         if (strcmp(name, "check") == 0){
-        //printf("test\n");
-        // file = open("log.txt", O_RDWR);
-        // //printf("test\n");
-        // char line [500];
-        // printf("%ld\n", read(file, line, 500));
-        // while (read(file, line, 500) > 0) {
-        //     printf("test\n");
-        //     printf("%s\n",line);
-        // }
-        // close(file);
-        FILE *f = fopen("log.txt", "r");
-        char str[500];
-        while (fgets(str, 500, f) != NULL){
-            printf("%s\n", str);
-        }
-        fclose(f);
 
-        }else if (strcmp(name, "clear") == 0){
+            FILE *f = fopen("log.txt", "r");
+            char str[500];
+            while (fgets(str, 500, f) != NULL){
+                printf("%s\n", str);
+            }
+            fclose(f);
 
-        FILE *f = fopen("log.txt", "w");
-        fclose(f);
+            }else if (strcmp(name, "clear") == 0){
 
-        }else{
-        FILE *f = fopen("log.txt", "a");
+            FILE *f = fopen("log.txt", "w");
+            fclose(f);
 
-        fprintf(f, "%s\n", strcat(strcat(name, " "), nickname));
+            }else{
+            FILE *f = fopen("log.txt", "a");
 
-        fclose(f);
+            fprintf(f, "%s\n", strcat(strcat(name, " "), nickname));
 
-        //printf("%s\n", name);
-        // char line [500];
-        // read(file, line, 500);
-        // printf("%s\n",line);
-        //
-        // close(file);
-        //printf("%s\n", name);
+            fclose(f);
+            
         }
 
     }
