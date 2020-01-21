@@ -319,11 +319,12 @@ int main(){
                         break;
                       case SDL_SCANCODE_DOWN:
                         if(rifle.angle<45)
-                        if(rifle.flip == SDL_FLIP_NONE)
-                          rifle.angle+=1;
-                        else
-                          rifle.angle-=1;
-                        break;
+                          if(rifle.flip == SDL_FLIP_NONE)
+                            rifle.angle+=1;
+                          else
+                            rifle.angle-=1;
+                          break;
+                        }
                       case SDL_SCANCODE_LEFT:
                         if(rifle.flip == SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_HORIZONTAL;
@@ -340,21 +341,20 @@ int main(){
                         break;
                     }
                 }
-            }
-            move(rect, idx, screen);
-            move(healthbars, idx, screen); // make health bars move with player
+                move(rect, idx, screen);
+                move(healthbars, idx, screen); // make health bars move with player
 
-            if (rect[idx].x >= maps[1].x + 1) {
-              screen = 1;
-            }
-            if (rect[idx].x <= maps[1].x +1) {
-              screen = 0;
-            }
-            if (t != time(NULL)) {
-              t = time(NULL);
-              printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
-            }
-            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),healthbars, units, &displayedRifle, rifleText, rifle);
+                if (rect[idx].x >= maps[1].x + 1) {
+                  screen = 1;
+                }
+                if (rect[idx].x <= maps[1].x +1) {
+                  screen = 0;
+                }
+                if (t != time(NULL)) {
+                  t = time(NULL);
+                  printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
+                }
+                render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),healthbars, units, &displayedRifle, rifleText, rifle);
         }
       }
       free(rect);
