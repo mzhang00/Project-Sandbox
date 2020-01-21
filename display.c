@@ -66,8 +66,20 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
       // Set render color to red
       SDL_SetRenderDrawColor( rend, 255, 0, 0, 255 );
       SDL_RenderFillRect( rend, &(copyRect));
+      if (i % 2 == 0) {
+        SDL_SetRenderDrawColor(rend, 255, 0, 0, SDL_ALPHA_OPAQUE);
+      }
+      else {
+        SDL_SetRenderDrawColor(rend, 0, 0, 255, SDL_ALPHA_OPAQUE);
+      }
+      SDL_RenderDrawLine(rend, rect[i].x + 20, rect[i].y-10, rect[i].x-10, rect[i].y-30);
+      SDL_RenderDrawLine(rend, rect[i].x-10, rect[i].y-30, rect[i].x+50, rect[i].y-30);
+      SDL_RenderDrawLine(rend, rect[i].x + 50, rect[i].y-30, rect[i].x + 20, rect[i].y-10);
     }
   }
+  //SDL_SetRenderDrawColor(rend, 0, 0, 0, SDL_ALPHA_OPAQUE);
+
+                //SDL_RenderPresent(rend);
   SDL_RenderCopy(rend, tex3, NULL, rect3);
 
   //Displays rifle
