@@ -1,5 +1,5 @@
 #include "display.h"
-
+#include "move.h"
 int init()
 {
     //Initialization flag
@@ -50,7 +50,7 @@ void clear(SDL_Renderer * renderer) {
     SDL_RenderPresent(renderer);
 }
 
-void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rect4, struct unit * units) {
+void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rect4, struct unit * units,SDL_Rect * displayedRifle, SDL_Texture *rifleText, struct rifleGun rifle){
   SDL_RenderClear(rend);
   for (int i = 0; i < 2;i++) {
     SDL_RenderCopy(rend, texts[i], NULL, &(rects[i]));
@@ -69,10 +69,21 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
     }
   }
   SDL_RenderCopy(rend, tex3, NULL, rect3);
+
+  //Displays rifle
+  if(rifle.rifleMode){
+    SDL_RenderCopyEx(rend,rifleText,NULL,displayedRifle,rifle.angle,&(rifle.center),rifle.flip);
+  }
+
+
   // triggers the double buffers
   // for multiple rendering
   SDL_RenderPresent(rend);
 
   // calculates to 60 fps
   SDL_Delay(1000 / 60);
+}
+void calculateCenter(struct rifleGun * rifle){
+  (&(rifle->center))->x =0;
+  (&(rifle->center))->y =0;
 }

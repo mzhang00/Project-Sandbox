@@ -8,9 +8,13 @@ int main(){
         printf("Failed to initialize\n");
       }
   else {
-    int t = time(NULL);
+        int t = time(NULL);
         int mode = 0;
+<<<<<<< HEAD
         int dir = 1;
+=======
+        struct rifleGun rifle;
+>>>>>>> dcd5fbc8110a136d38a4e848b2d39b76b5aaf9b3
         SDL_Window * win = SDL_CreateWindow( "Sandbox Wars", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
         if( win == NULL ){
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -28,7 +32,6 @@ int main(){
         if( surface == NULL ){
             printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
         }
-
 
         // loads image to our graphics hardware memory.
         SDL_Texture* tex = SDL_CreateTextureFromSurface(rend, surface);
@@ -70,40 +73,56 @@ int main(){
          }
          SDL_FreeSurface(surface);
        }
+       //Displaying Gun
+       getcwd(cwd, 100);
+       strcat(cwd, "/rifle3.bmp");
+       surface = SDL_LoadBMP(cwd);
+       SDL_Texture* rifleText = SDL_CreateTextureFromSurface(rend, surface);
+       SDL_Rect displayedRifle;
+       SDL_QueryTexture(rifleText, NULL, NULL, &displayedRifle.w, &displayedRifle.h);
+       SDL_FreeSurface(surface);
+       displayedRifle.x = 0;
+       displayedRifle.y = 0;
+       displayedRifle.w = 50;
+       displayedRifle.h = 10;
+
+       rifle.angle = 0;
+       rifle.rifleMode = 0;
+       rifle.flip = SDL_FLIP_NONE;
 
 
-        SDL_Rect * maps = malloc(2*sizeof(SDL_Rect));
-        SDL_Texture ** mapsText = malloc(2*sizeof(SDL_Texture *));
-        for(int i = 0;i < 2;i++){
-          getcwd(cwd, 100);
-          switch(i){
-            case 0:
-              strcat(cwd,"/map1.bmp");
-              break;
-            case 1:
-              strcat(cwd,"/map2.bmp");
-              break;
-          }
-          //Load splash image
-          surface = SDL_LoadBMP(cwd);
-          mapsText[i] = SDL_CreateTextureFromSurface(rend, surface);
-          SDL_QueryTexture(mapsText[i], NULL, NULL, &(maps[i].w), &(maps[i].h));
-          switch(i){
-            case 0:
-              maps[i].x = 0;
-              break;
-            case 1:
-              maps[i].x = SCREEN_WIDTH - 3;
-              break;
-          }
-          maps[i].y = 0;
-          maps[i].w = SCREEN_WIDTH;
-          maps[i].h = SCREEN_HEIGHT;
-          if( surface == NULL ){
-              printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
-          }
-          SDL_FreeSurface(surface);
+      SDL_Rect * maps = malloc(2*sizeof(SDL_Rect));
+      SDL_Texture ** mapsText = malloc(2*sizeof(SDL_Texture *));
+      for(int i = 0;i < 2;i++){
+        getcwd(cwd, 100);
+        switch(i){
+          case 0:
+            strcat(cwd,"/map1.bmp");
+            break;
+          case 1:
+            strcat(cwd,"/map2.bmp");
+            break;
         }
+        //Load splash image
+        surface = SDL_LoadBMP(cwd);
+        mapsText[i] = SDL_CreateTextureFromSurface(rend, surface);
+        SDL_QueryTexture(mapsText[i], NULL, NULL, &(maps[i].w), &(maps[i].h));
+        switch(i){
+          case 0:
+            maps[i].x = 0;
+            break;
+          case 1:
+            maps[i].x = SCREEN_WIDTH - 3;
+            break;
+        }
+        maps[i].y = 0;
+        maps[i].w = SCREEN_WIDTH;
+        maps[i].h = SCREEN_HEIGHT;
+        if( surface == NULL ){
+            printf( "Unable to load image %s! SDL Error: %s\n", cwd, SDL_GetError() );
+        }
+        SDL_FreeSurface(surface);
+      }
 
         // let us control our image position
         // so that we can move it with our keyboard.
@@ -257,6 +276,10 @@ int main(){
                         break;
                       case SDL_SCANCODE_2:
                         mode = 3;
+                        displayedRifle.x = rect[idx].x+rect[idx].w/2;
+                        displayedRifle.y = rect[idx].y+rect[idx].h/2-5;
+                        rifle.rifleMode = 1;
+                        calculateCenter(&rifle);
                         break;
                       case SDL_SCANCODE_3:
                         //boot
@@ -271,74 +294,97 @@ int main(){
                         mode = 0;
                         break;
                      }
-                  break;
-                case 3:
-                  switch (event.key.keysym.scancode) {
-                    case SDL_SCANCODE_SPACE:
-                      if (idx < 5) {
-                           idx++;
-                      }
-                      else {
-                        idx = 0;
-                      }
-                      mode = 0;
-                      break;
+                  case 3:
+                    switch (event.key.keysym.scancode) {
+                      case SDL_SCANCODE_SPACE:
+                        //int j = 0;
+                        for (int j=0;j<6;j++){
+                          if(j==idx)
+                            continue;
+                          if(detectBulletIntersectRect(rifle,rect[j])){
+                            units[idx].health-=30;
+                          }
+                        }
+                        if (idx < 5) {
+                            idx++;
+                        }
+                        else {
+                          idx = 0;
+                        }
+                        break;
+                      case SDL_SCANCODE_X:
+                          rifle.rifleMode = 0;
+                          mode = 2;
+                          break;
+                      case SDL_SCANCODE_UP:
+                        if(rifle.angle>-45)
+                          if(rifle.flip == SDL_FLIP_NONE)
+                            rifle.angle-=1;
+                        if(rifle.angle<45)
+                          if(rifle.flip != SDL_FLIP_NONE)
+                            rifle.angle+=1;
+                        break;
+                      case SDL_SCANCODE_DOWN:
+                        if(rifle.angle<45)
+                          if(rifle.flip == SDL_FLIP_NONE)
+                            rifle.angle+=1;
+                        if(rifle.angle>-45)
+                          if(rifle.flip != SDL_FLIP_NONE)
+                            rifle.angle-=1;
+                        break;
+                      case SDL_SCANCODE_LEFT:
+                        if(rifle.flip == SDL_FLIP_NONE){
+                          rifle.flip = SDL_FLIP_HORIZONTAL;
+                          rifle.angle = 0;
+                          rifle.center.x = displayedRifle.w;
+                          displayedRifle.x-=displayedRifle.w;
+                        }
+                        break;
+                      case SDL_SCANCODE_RIGHT:
+                        if(rifle.flip != SDL_FLIP_NONE){
+                          rifle.flip = SDL_FLIP_NONE;
+                          rifle.angle = 0;
+                          displayedRifle.x+=displayedRifle.w;
+                          rifle.center.x=0;
+                        }
+                        break;
                     }
-                    case SDL_SCANCODE_X:
-                      mode = 2;
-                      break;
-                    break;
+                }
+              }
+            }
+            move(rect, idx, screen);
+            move(healthbars, idx, screen); // make health bars move with player
 
-                  }
-                }
-                move(rect, idx, screen);
-                move(healthbars, idx, screen); // make health bars move with player
-
-                if (rect[idx].x >= maps[1].x + 1) {
-                  screen = 1;
-                }
-                if (rect[idx].x <= maps[1].x +1) {
-                  screen = 0;
-                }
-                if (rect[idx].x >= SCREEN_WIDTH/4+21 && rect[idx].x <= (3*SCREEN_WIDTH)/4+21) {
-                  int dif = (-shift+SCREEN_WIDTH/2+21)/2 - rect[idx].x;
-                  shift += dif;
-                  for (int i = 0; i < 2; i++) {
-                    maps[i].x += dif;
-                  }
-                  for (int i = 0; i < 6; i++) {
-                    rect[i].x += dif;
-                  }
-                }
-/*
-                if (t != time(NULL)) {
-                  t = time(NULL);
-                  printf("x: %d\t equals: %d\n",rect[idx].x, (3*SCREEN_WIDTH)/2);
-                }
-
-            // right boundary
-            if (rect.x + rect.w > 1000)
-                rect.x = 1000 - rect.w;
-            // left boundary
-            if (rect.x < 0)
-                rect.x = 0;
-            // bottom boundary
-            if (rect.y + rect.h > 1000)
-                rect.y = 1000 - rect.h;
-            // upper boundary
-            if (rect.y < 0)
-                rect.y = 0;
-*/
-            render(rend, tex, rect, mapsText, maps, screenText[mode], &(screens[mode]), healthbars, units);
+            if (rect[idx].x >= maps[1].x + 1) {
+              screen = 1;
+            }
+            if (rect[idx].x <= maps[1].x +1) {
+              screen = 0;
+            }
+            if (rect[idx].x >= SCREEN_WIDTH/4+21 && rect[idx].x <= (3*SCREEN_WIDTH)/4+21) {
+              int dif = (-shift+SCREEN_WIDTH/2+21)/2 - rect[idx].x;
+              shift += dif;
+              for (int i = 0; i < 2; i++) {
+                maps[i].x += dif;
+              }
+              for (int i = 0; i < 6; i++) {
+                rect[i].x += dif;
+              }
+            }
+            /*
+            if (t != time(NULL)) {
+              t = time(NULL);
+              printf("x: %d\t y: %d\n",rect[idx].x, rect[idx].y);
+            }
+            */
+            render(rend,tex,rect, mapsText, maps, screenText[mode], &(screens[mode]),healthbars, units, &displayedRifle, rifleText, rifle);
         }
-      }
-        free(rect);
-        free(maps);
-        free(mapsText);
-        free(screens);
-        free(screenText);
-        close1(rend,tex,win);
-      }
-
-  return 0;
+    free(rect);
+    free(maps);
+    free(mapsText);
+    free(screens);
+    free(screenText);
+    close1(rend,tex,win);
+    return 0;
+  }
 }
