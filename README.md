@@ -52,24 +52,82 @@ Algorithms:
   <li>Game Process will continue switching turns until the game is over. 
 </ul>
 
-## Timeline
-Key: M == Michael, R == Raymond, Ch == Chris, Ca == Caleb <br>
-1/3/20:: Initialize the terminal with a custom size.- Ca<br>
-1/6/20: Draw the stickmen and allow for their movement on the terminal- Ch<br>
-1/6/20: Setup a rudimentary turn-by-turn system- M<br>
-1/6/20: Start designing blocks and the static environment elements of the map- R<br>
-1/7/20: Design a gun and allow the player to use a gun- Ca<br>
-1/8/20: Design the weapons and allow the player use a weapon - Ca<br>
-1/9/20: Iterate between multiple characters - M<br>
-1/13/20: Refine the behaviours of the moveable characters to allow them to navigate the map - also limit distance - Ch<br>
-1/13/20: Allow the weapons to interact with and affect the health of the characters - R<br>
-1/13/20: Design an interface that zooms in on a portion of the map depending on which character is selected - M<br>
-1/13/20 Add different weapons such as grenade or boot: Ca<br>
-1/14/20: Design a main level screen to allow user to select different maps or or adjust the amount of characters each player starts with - Ch<br>
-1/15/20: Implement different settings and modes, like easy/medium/hard. Ca <br>
-1/16/20: Time to debug - Everyone<br>
-1/17/20: Final Working product - Also everyone<br>
-If Extra Time: <br>
-Allow for multiple computers to play the game<br>
-Have a multiplayer mode with more than just 2 players<br>
-Animate fancy graphics, or at least sprites, of the projectiles and the characters<br>
+## Devlog
+1/4/20 - 1/11/20: Tried and eventually successfully got SDL 2.0 to work using a PuTTy X11 server. Everyone
+1/11/20: 
+<ul>
+  <li>Chris: Got a window to display using tutorials from Lazy Foo Productions. 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/12/20: 
+<ul>
+  <li>Chris: Allowed window to close by clicking the "x" button and allowed user to move units around using arrow keys. 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/13/20: 
+<ul>
+  <li>Chris: Got a generic background map to show up. 
+  <li>Caleb: 
+  <li>Raymond: Got the gun menu to show up. 
+  <li>Michael: 
+</ul>
+1/14/20: 
+<ul>
+  <li>Chris: Photoshopped out the characters and stray elements from the background map, added a new character model (Nezuko Kamado from Kimetsu no Yaiba) and coded the behaviours of the characters based on where in the map they are.
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/15/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/16/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/17/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/18/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/19/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/20/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
+1/21/20: 
+<ul>
+  <li>Chris: 
+  <li>Caleb: 
+  <li>Raymond:
+  <li>Michael: 
+</ul>
