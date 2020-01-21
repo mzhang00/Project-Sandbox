@@ -39,5 +39,5 @@ void close1(SDL_Renderer * rend,SDL_Texture * tex, SDL_Window * win);
 
 void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture ** texts, SDL_Rect * rects, SDL_Texture * tex3, SDL_Rect * rect3, SDL_Rect * rect4, struct unit * units,SDL_Rect * displayedRifle, SDL_Texture *rifleText, struct rifleGun rifle);
 void clear(SDL_Renderer * renderer);
-void calculateCenter(struct rifleGun * rifle, SDL_Rect displayedRifle);
+void calculateCenter(struct rifleGun * rifle);
 #endif

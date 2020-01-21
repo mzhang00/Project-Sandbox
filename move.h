@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <stdio.h>
-
+#include "display.h"
 extern int shift;
 
 struct rect{
@@ -12,6 +12,7 @@ struct rect{
   int w;
   int l;
 };
+
 
 void move(SDL_Rect * rec, int num, int scr);
 void up_check(SDL_Rect * rec, int num, int scr);

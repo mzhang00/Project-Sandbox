@@ -269,10 +269,10 @@ int main(){
                         break;
                       case SDL_SCANCODE_2:
                         mode = 3;
-                        displayedRifle.x = rect[idx].x;
-                        displayedRifle.y = rect[idx].y;
+                        displayedRifle.x = rect[idx].x+rect[idx].w/2;
+                        displayedRifle.y = rect[idx].y+rect[idx].h/2-5;
                         rifle.rifleMode = 1;
-                        calculateCenter(&rifle,displayedRifle);
+                        calculateCenter(&rifle);
                         break;
                       case SDL_SCANCODE_3:
                         //boot
@@ -310,23 +310,32 @@ int main(){
                           mode = 2;
                           break;
                       case SDL_SCANCODE_UP:
-                        if(rifle.angle>-45)
-                          rifle.angle-=1;
+                        if(rifle.angle>-45){
+                          if(rifle.flip == SDL_FLIP_NONE)
+                            rifle.angle-=1;
+                          else
+                            rifle.angle+=1;
+                        }
                         break;
                       case SDL_SCANCODE_DOWN:
                         if(rifle.angle<45)
+                        if(rifle.flip == SDL_FLIP_NONE)
                           rifle.angle+=1;
+                        else
+                          rifle.angle-=1;
                         break;
                       case SDL_SCANCODE_LEFT:
                         if(rifle.flip == SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_HORIZONTAL;
                           rifle.angle = 0;
+                          displayedRifle.x -= displayedRifle.w;
                         }
                         break;
                       case SDL_SCANCODE_RIGHT:
                         if(rifle.flip != SDL_FLIP_NONE){
                           rifle.flip = SDL_FLIP_NONE;
                           rifle.angle = 0;
+                          displayedRifle.x -= displayedRifle.w;
                         }
                         break;
                     }

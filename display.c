@@ -83,9 +83,7 @@ void render(SDL_Renderer* rend, SDL_Texture * tex, SDL_Rect *rect, SDL_Texture *
   // calculates to 60 fps
   SDL_Delay(1000 / 60);
 }
-void calculateCenter(struct rifleGun * rifle, SDL_Rect displayedRifle){
-  int finalX = displayedRifle.x;//+displayedRifle.w/2;
-  int finalY = displayedRifle.y;//+displayedRifle.h/2;
+void calculateCenter(struct rifleGun * rifle){
   (&(rifle->center))->x =0;
   (&(rifle->center))->y =0;
 }
