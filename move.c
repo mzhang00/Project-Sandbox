@@ -394,8 +394,8 @@ float calcCenter(int *cX, int *cY, struct rect recty){
 int detectBulletIntersectRect(struct rifleGun rifle, SDL_Rect shooting_unit, SDL_Rect recty){
   int xRight = (int)(shooting_unit.x+cos(rifle.angle));
   int xLeft = (int)(shooting_unit.x-cos(rifle.angle));
-  int yUp = (int)(shooting_unit.y+sin(rifle.angle));
-  int yDown = (int)(shooting_unit.y-sin(rifle.angle));
+  int yUp = (int)(shooting_unit.y+sin(-1*rifle.angle));
+  int yDown = (int)(shooting_unit.y-sin(-1*rifle.angle));
   if (rifle.flip == SDL_FLIP_NONE){
     if(shooting_unit.x>recty.x){
       return 0;
