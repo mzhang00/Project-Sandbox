@@ -174,7 +174,7 @@ int main(){
           units[i].unit_tex = tex;
 
           // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-          /*int rectx = rect[i].x - 50;
+          int rectx = rect[i].x - 50;
           int recty = rect[i].y + 10;
           if ((rectx <= 0)) {
             rectx = 1;
@@ -252,17 +252,44 @@ int main(){
                         up_check(rect,idx,screen);
                         break;
                       case SDL_SCANCODE_LEFT:
-                        rect[idx].x -= speed / 30;
-                        healthbars[idx].x -= speed / 30;
+                        if (rect[idx].x >= SCREEN_WIDTH/4-10 && rect[idx].x <= (3*SCREEN_WIDTH)/4 -30) {
+                          shift += speed / 30;
+                          for (int i = 0; i < 2; i++) {
+                            maps[i].x += speed / 30;
+                          }
+                          for (int i = 0; i < 6; i++) {
+                            if (i != idx) {
+                              rect[i].x += speed / 30;
+                              healthbars[i].x += speed / 30;
+                            }
+                          }
+                        }
+                        else {
+                          rect[idx].x -= speed / 30;
+                          healthbars[idx].x -= speed / 30;
+                        }
                         //dir = -1;
                         break;
                       case SDL_SCANCODE_DOWN:
                         down_check(rect,idx,screen);
                         break;
                       case SDL_SCANCODE_RIGHT:
+                      if (rect[idx].x >= SCREEN_WIDTH/4-10 && rect[idx].x <= (3*SCREEN_WIDTH)/4 -30) {
+                        shift -= speed / 30;
+                        for (int i = 0; i < 2; i++) {
+                          maps[i].x -= speed / 30;
+                        }
+                        for (int i = 0; i < 6; i++) {
+                          if (i != idx) {
+                            rect[i].x -= speed / 30;
+                            healthbars[i].x -= speed / 30;
+                          }
+                        }
+                      }
+                      else {
                         rect[idx].x += speed / 30;
                         healthbars[idx].x += speed / 30;
-                        //dir = 1;
+                      }
                         break;
                       case SDL_SCANCODE_1:
                         mode = 2;
@@ -363,8 +390,9 @@ int main(){
             if (rect[idx].x <= maps[1].x +1) {
               screen = 0;
             }
+            /*
             if (rect[idx].x >= SCREEN_WIDTH/4-10 && rect[idx].x <= (3*SCREEN_WIDTH)/4 -30) {
-              int dif = (-shift-21+SCREEN_WIDTH/2)/2 - rect[idx].x;
+              int dif = (-shift+SCREEN_WIDTH/2)/2 - rect[idx].x;
               shift += dif;
               for (int i = 0; i < 2; i++) {
                 maps[i].x += dif;
@@ -373,7 +401,7 @@ int main(){
                 rect[i].x += dif;
                 healthbars[i].x += dif;
               }
-            }
+            }*/
 
             if (t != time(NULL)) {
               t = time(NULL);
